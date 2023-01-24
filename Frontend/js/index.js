@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     createRow(tbody, ["2", "John Jenkins", "jjenkins@mail.valenciacollege.edu"]);
     createRow(tbody, ["3", "Will", "will@mail.valenciacollege.edu"]);
 
-    var getCustomers = await this.fetch("https://valenciashopping.store/api/customers");
+    var getCustomers = await this.fetch("https://valenciashopping.store/api/customers", { headers: { 'Access-Control-Allow-Origin': '*' } });
     var cust = getCustomers.json();
     console.log(cust);
 
