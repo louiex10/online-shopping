@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 class CustomerController {
@@ -22,7 +21,6 @@ class CustomerController {
 
   // Aggregate root
   // tag::get-aggregate-root[]
-  @CrossOrigin
   @GetMapping("/api/customers")
   List<Customer> all() {
     return repository.findAll();
