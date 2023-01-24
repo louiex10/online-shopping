@@ -1,1 +1,1 @@
-tail -F logs.txt
+tail -F log.txt
