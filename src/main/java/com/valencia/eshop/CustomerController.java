@@ -21,27 +21,27 @@ class CustomerController {
 
   // Aggregate root
   // tag::get-aggregate-root[]
-  @GetMapping("/customers")
+  @GetMapping("/api/customers")
   List<Customer> all() {
     return repository.findAll();
   }
   // end::get-aggregate-root[]
 
-  @PostMapping("/customers")
+  @PostMapping("/api/customers")
   Customer newCustomer(@RequestBody Customer newCustomer) {
     return repository.save(newCustomer);
   }
 
   // Single item
   
-  @GetMapping("/customers/{id}")
+  @GetMapping("/api/customers/{id}")
   Customer one(@PathVariable Long id) {
     
     return repository.findById(id)
       .orElseThrow(() -> new CustomerNotFoundException(id));
   }
 
-  @PutMapping("/customers/{id}")
+  @PutMapping("/api/customers/{id}")
   Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Long id) {
     
     return repository.findById(id)
@@ -56,7 +56,7 @@ class CustomerController {
       });
   }
 
-  @DeleteMapping("/customers/{id}")
+  @DeleteMapping("/api/customers/{id}")
   void deleteCustomer(@PathVariable Long id) {
     repository.deleteById(id);
   }
