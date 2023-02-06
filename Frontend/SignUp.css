@@ -1,0 +1,35 @@
+
+
+
+body {
+  background-color: lightblue;
+
+}
+
+
+
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+  border-radius: 20px
+}
+
+.topnav a:hover {
+  background-color: rgba(51, 153, 255, 1);
+  color: black;
+}
+
+.active {
+  font-family: "Lucida Console", monospace;
+  background-color: lightblue ;
+  color: white;
+  background: rgba(51, 153, 255, 1);
+   width: 42px;
+   height: 20px;
+  border-radius: 20px
+
+}
