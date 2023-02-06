@@ -1,4 +1,4 @@
-package com.valencia.eshop;
+package com.valencia.eshop.models;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-class Customer {
+public class Customer {
 
   private @Id @GeneratedValue Long id;
   private String name;
@@ -15,7 +15,7 @@ class Customer {
 
   Customer() {}
 
-  Customer(String name, String email) {
+  public Customer(String name, String email) {
 
     this.name = name;
     this.email = email;
