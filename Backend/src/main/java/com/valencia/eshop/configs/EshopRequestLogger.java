@@ -1,8 +1,10 @@
-package com.valencia.eshop;
+package com.valencia.eshop.configs;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
+@Configuration
 public class EshopRequestLogger {
     @Bean
     public CommonsRequestLoggingFilter requestLoggingFilter() {

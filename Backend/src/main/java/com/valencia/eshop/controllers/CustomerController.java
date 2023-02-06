@@ -1,4 +1,4 @@
-package com.valencia.eshop;
+package com.valencia.eshop.controllers;
 
 import java.util.List;
 
@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.valencia.eshop.exceptions.CustomerNotFoundException;
+import com.valencia.eshop.models.Customer;
+import com.valencia.eshop.repositories.CustomerRepository;
 
 @RestController
 class CustomerController {

@@ -1,4 +1,4 @@
-package com.valencia.eshop;
+package com.valencia.eshop.controllers;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
