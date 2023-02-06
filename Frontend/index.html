@@ -1,32 +1,52 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Valencia Online Shopping</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/MainPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
+<header>
+
+    <h1>
+        <div class="topnav">
+            <a href="index.html" class="active">HOME</a>
+            <div id="myLinks">
+                <a href="#store">Store</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+            </div>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+
+    </h1>
+
+</header>
+
 <body>
-    <div class="container text-center">
-        <h1 class="mt-3 mb-3">Valencia Online Shopping</h1>
-        <h3 class="mb-3">Customer List</h3>
-        <table class="table table-primary table-hover table-striped" id="custTable">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-        </table>
+
+    <div>
+        <img src="./img/Logo.jpg" alt="logo" position="center">
     </div>
 
-    <!--JS Imports-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="js/index.js"></script>
+    <div class="buttons">
+        <div>
+            <button onclick="window.location.href='LogIn.html'" class="log">Login</button>
+            <button onclick="window.location.href='SignUp.html'" class="reg">Sign up</button>
+        </div>
+    </div>
+
+
+
+
 </body>
+
+
+
+
 
 </html>
