@@ -1,6 +1,5 @@
 package com.valencia.eshop.models;
 
-import java.text.DecimalFormat;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -14,13 +13,13 @@ public class Product {
     private String name;
     private String description;
     private String image_url;
-    private DecimalFormat price;
+    private Double price;
     private Integer inventory;
 
     Product() {}
 
     public Product(String name, String description, String image_url,
-     DecimalFormat price, Integer inventory) {
+     Double price, Integer inventory) {
 
         this.name = name;
         this.description = description;
@@ -45,7 +44,7 @@ public class Product {
     return this.image_url;
   }
 
-  public DecimalFormat getPrice() {
+  public Double getPrice() {
     return this.price;
   }
 
@@ -69,7 +68,7 @@ public class Product {
     this.image_url = image_url;
   }
 
-  public void setPrice(DecimalFormat price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
 
