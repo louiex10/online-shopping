@@ -3,18 +3,18 @@ package com.valencia.eshop.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
 
 import com.valencia.eshop.models.Customer;
 import com.valencia.eshop.repositories.CustomerRepository;
 
-@Configuration
+//@Configuration
 public class LoadDatabase {
 
   private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-  @Bean
+  //@Bean
   CommandLineRunner initDatabase(CustomerRepository repository) {
 
     return args -> {
