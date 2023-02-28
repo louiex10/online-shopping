@@ -1,0 +1,17 @@
+[{
+        "name": "Cargo Pants",
+        "category": "Men",
+        "size": "L",
+        "price": 19.99,
+        "description": "super cool cargo pants",
+        "image_url": "./img/Clothing/Men/Pants/Cargo.png"
+    },
+    {
+        "name": "Dress Pants",
+        "category": "MEN",
+        "size": "S",
+        "price": 29.99,
+        "description": "super cool dress pants",
+        "image_url": "./img/Clothing/Men/Pants/Dress.png"
+    }
+]
