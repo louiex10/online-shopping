@@ -50,6 +50,8 @@ class ProductController {
                 Product.setImage_url(newProduct.getImage_url());
                 Product.setPrice(newProduct.getPrice());
                 Product.setInventory(newProduct.getInventory());
+                Product.setCategory(newProduct.getCategory());
+                Product.setSize(newProduct.getSize());
                 return repository.save(Product);
             })
             .orElseGet(() -> {
