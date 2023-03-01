@@ -55,17 +55,6 @@ button.reg:hover {
   background-color: rgba(255, 255, 255, 1);
 }
 
-img{
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-  width: 450px;
-
-
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
 .topnav {
@@ -231,4 +220,76 @@ img{
   transform: translate(-100%, 0);
 
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.container {
+  position: relative;
+  margin: auto;
+  overflow:hidden;
+  width: 520px;
+  height: 350px;
+  background: $white;
+  box-shadow: 5px 5px 15px rgba($rose, .5);
+  border-radius: 10px;
+}
+
+img {
+  width: 190px;
+  height: 190px;
+  float: left;
+  margin-left: 0px 0px 0px 30px;
+  border-radius: 10px;
+  position:relative;
+  top:-85px;
+
+}
+
+h1 {
+  padding: 12px 30px;
+  border: 1px solid #313131;
+  background:#212121;
+  color:#fff;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius:27px;
+  transition: all 0.05s ease-in-out;
+  font-family: Lato, sans-serif;
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:45px;
+  position:relative;
+  top:-85px;
+  transition: all 0.2s ease-in-out;
+  }
+
+  p{
+           margin:0;
+           padding:0;
+       }
+
+.wrapper{
+           width: 380px;
+           height: 340px;
+           transition: all 0.2s ease-in-out;
+           box-shadow: 0 2px 7px #dfdfdf;
+           margin: 50px auto;
+           background: #fafafa;
+           border-radius: 27px;
+         }
+
+  p.price
+  {
+      padding: 1rem 0;
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: Lato, sans-serif;
+  }
+
+  p.category {
+   font-family: Lato, sans-serif;
+  }
+
+p.name
+{
+  font-family: Lato, sans-serif;
 }
