@@ -1,0 +1,306 @@
+body {
+  background-color: lightblue;
+
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: lightblue;
+  position:absolute;
+  margin: 50px 0 0 50px;
+}
+
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+  border-radius: 20px
+}
+
+.topnav a:hover {
+  background-color: rgba(51, 153, 255, 1);
+  color: black;
+}
+
+.active {
+  font-family: "Lucida Console", monospace;
+  background-color: lightblue ;
+  color: white;
+  background: rgba(51, 153, 255, 1);
+   width: 42px;
+   height: 20px;
+  border-radius: 20px
+
+}
+
+
+*:before,
+*:after{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+.background{
+width: 430px;
+height: 520px;
+position: absolute;
+transform: translate(-50%,-50%);
+left: 50%;
+top: 50%;
+}
+
+.shape:first-child{
+background: linear-gradient(
+  #1845ad,
+  #23a2f6
+);
+left: -80px;
+top: -80px;
+}
+.shape:last-child{
+background: linear-gradient(
+  to right,
+  #ff512f,
+  #f09819
+);
+
+right: -30px;
+bottom: -80px;
+}
+
+form{
+height: 520px;
+width: 400px;
+background-color: rgba(255,255,255,0.13);
+position: absolute;
+transform: translate(-50%,-50%);
+top: 50%;
+left: 50%;
+border-radius: 10px;
+backdrop-filter: blur(10px);
+border: 2px solid rgba(255,255,255,0.1);
+box-shadow: 0 0 40px rgba(8,7,16,0.6);
+padding: 50px 35px;
+}
+form *{
+font-family: "Lucida Console", Monaco, monospace;
+color: #ffffff;
+letter-spacing: 0.5px;
+outline: none;
+border: none;
+}
+form h3{
+font-size: 32px;
+font-weight: 500;
+line-height: 42px;
+text-align: center;
+}
+
+label{
+display: block;
+margin-top: 30px;
+font-size: 16px;
+font-weight: 500;
+}
+input{
+display: block;
+height: 50px;
+width: 100%;
+background-color: rgba(51, 153, 255, 1);
+border-radius: 3px;
+padding: 0 10px;
+margin-top: 8px;
+font-size: 14px;
+font-weight: 300;
+}
+::placeholder{
+color: #e5e5e5;
+}
+button{
+margin-top: 50px;
+width: 100%;
+background-color: #ffffff;
+color: #080710;
+padding: 15px 0;
+font-size: 18px;
+font-weight: 600;
+border-radius: 5px;
+cursor: pointer;
+}
+
+
+#burgerslider
+{
+  display: block;
+  position: relative;
+  top: : 50px;
+  left: 50px;
+
+  z-index: 1;
+
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#burgerslider a
+{
+  text-decoration: none;
+  color: #232323;
+
+  transition: color 0.3s ease;
+}
+
+#burgerslider a:hover
+{
+  color: rgba(51, 153, 255, 1);
+}
+
+
+#burgerslider input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+
+  cursor: pointer;
+
+  opacity: 0;
+  z-index: 2;
+
+  -webkit-touch-callout: none;
+}
+
+
+
+#burgerslider span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#burgerslider span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+
+#burgerslider input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+
+#burgerslider input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+
+#burgerslider input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+
+#burger li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+
+#burgerslider input:checked ~ ul
+{
+  transform: none;
+}
+
+#burgerslider span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+
+  background: rgba(51, 153, 255, 1);
+  border-radius: 3px;
+
+  z-index: 1;
+
+  transform-origin: 4px 0px;
+
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#burger
+{
+  position: absolute;
+  width: 50px;
+  margin: -50px 0 0 -50px;
+  padding: 50px;
+  padding-top: 50px;
+
+  background: lightblue;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+
+
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.Cart-Container{
+ width: 70%;
+ height: 5%;
+ background-color: #ffffff;
+ border-radius: 20px;
+ box-shadow: 0px 25px 40px #1687d933;
+
+
+ height: 85vh;
+ display:flex;
+ justify-content: center;
+ align-items:flex-start;
+ margin: 50px ;
+ padding: 0;
+
+}
+
+.CartTitle {
+  text-transform: lowercase;
+  font: 2em 'Shopper', sans-serif;
+  line-height: 0.5em;
+  display: inline-block;
+}
+
+.CartBar {
+  max-width: 75em;
+  width: 95%;
+  margin: 40px auto;
+  overflow: hidden;
+  position: relative;
+
+  border-radius: 0.6em;
+  background: #ecf0f1;
+  box-shadow: 0px 25px 40px #1687d933;
+}
+
+.ShoppingList
+{
+position:absolute;
+left:80px;
+top:600px;
+}

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Valencia Online Shopping</title>
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/storepage.css">
+    <script src="js/storepage.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -15,12 +16,12 @@
 
     <br></br>
 
-    <h1>
-        <div class="topnav">
-            <a href="index.html" class="active">HOME</a>
-            </a>
-        </div>
-    </h1>
+
+    <div class="topnav">
+        <a href="index.html" class="active">HOME</a>
+        </a>
+    </div>
+
 
     <div id="burgerslider">
         <input type="checkbox" />
@@ -41,26 +42,27 @@
     </div>
 </header>
 
-
-
-
 <body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
+    <br></br>
+    <br></br>
+    <br></br>
+
+    <div id="listings">
+        <div class="listing">
+            <h1 class="name">Name</h1>
+            <img src="" class="images">
+            <p>description</p>
+            <p class="category">Category</p>
+            <p class="price">price</p>
+        </div>
     </div>
-    <form>
-        <h3>Login Here</h3>
 
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username">
 
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
 
-        <button>Log In</button>
-    </form>
 </body>
+
+
+
 
 
 </html>
