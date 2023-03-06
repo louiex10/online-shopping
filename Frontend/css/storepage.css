@@ -243,6 +243,13 @@ img {
   top:-85px;
 
 }
+img:hover{
+
+ transform: translateY(-20%);
+ box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(51, 153, 255, 1) 0px 8px 16px -8px;
+
+
+}
 
 h1 {
   padding: 12px 30px;
@@ -293,3 +300,74 @@ p.name
 {
   font-family: Lato, sans-serif;
 }
+
+.buy--btn {
+  padding: .5em .05em;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  color: #fff;
+  background-color: rgba(51, 153, 255, 1);
+  box-shadow: 2px 2px 25px -7px $color-primary;
+  font-family: Lato, sans-serif;
+  cursor: pointer;
+  position:relative;
+  top:-127px;
+  left:-11px;
+
+}
+
+  .buy--btn:active{
+    transform: scale(0.97);
+  }
+
+  .detailswrapper{
+
+
+ width: 190px;
+ height: 275px;
+ border-radius: 30px;
+ background: #212121;
+ position:relative;
+ right:-295px;
+ top:-100px;
+ box-shadow: 5px 5px 20px rgb(25, 25, 25),
+             -5px -5px 20px rgb(60, 60, 60);
+color:white;
+text-align: center;
+font-family: Lato, sans-serif;
+text-transform:uppercase;
+font-size: 10px;
+
+
+  }
+  .detailswrapper:hover
+  {
+    transform: translateY(10%);
+    box-shadow: rgb(25, 25, 25, 0.25) 0px 13px 47px -5px, rgba(60, 60, 60, 1) 0px 8px 16px -8px;
+  }
+
+  .hoverwrapper {
+    --g: 1px;     /* the gap */
+   --b: 6px;    /* border thickness*/
+   --c: rgba(51, 153, 255, 1); /* the color */
+
+
+   padding: calc(var(--g) + var(--b));
+   --_c: #0000 0 25%, var(--c) 0 50%;
+   --_g1: repeating-linear-gradient(90deg ,var(--_c)) repeat-x;
+   --_g2: repeating-linear-gradient(180deg,var(--_c)) repeat-y;
+   background:
+     var(--_g1) var(--_p, 25%) 0   ,var(--_g2) 0    var(--_p,125%),
+     var(--_g1) var(--_p,125%) 100%,var(--_g2) 100% var(--_p, 25%);
+   background-size: 200% var(--b),var(--b) 200%;
+   cursor: pointer;
+   filter: grayscale(50%);
+   transition: .3s;
+  }
+  .hoverwrapper:hover{
+    --_p: 75%;
+  filter: grayscale(0%);
+  }
