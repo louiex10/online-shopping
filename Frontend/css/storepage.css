@@ -350,7 +350,7 @@ font-size: 10px;
   }
 
   .hoverwrapper {
-    --g: 1px;     /* the gap */
+    --g: 4px;     /* the gap */
    --b: 6px;    /* border thickness*/
    --c: rgba(51, 153, 255, 1); /* the color */
 
