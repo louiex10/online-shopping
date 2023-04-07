@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.valencia.eshop.exceptions.ProductNotFoundException;
@@ -24,8 +25,17 @@ class ProductController {
     }
 
     @GetMapping("/api/products")
-    List<Product> all() {
-        return repository.findAll();
+    List<Product> all(@RequestParam(value="category", required = false) String category,
+                      @RequestParam(value="size", required = false) String size) {
+        if (category != null && size  != null){
+            return repository.findByCategoryAndSize(category, size);
+        } else if (category != null){
+            return repository.findByCategory(category);
+        } else if (size != null) {
+            return repository.findBySize(size);
+        } else {
+            return repository.findAll();
+        }
     }
 
     @PostMapping("/api/products")
