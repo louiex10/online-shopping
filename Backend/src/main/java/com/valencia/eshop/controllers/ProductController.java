@@ -25,14 +25,14 @@ class ProductController {
     }
 
     @GetMapping("/api/products")
-    List<Product> all(@RequestParam(value="category", required = false) String category,
-                      @RequestParam(value="size", required = false) String size) {
+    List<Product> all(@RequestParam(value="category", required = false) List<String> category,
+                      @RequestParam(value="size", required = false) List<String> size) {
         if (category != null && size  != null){
-            return repository.findByCategoryAndSize(category, size);
+            return repository.findByCategoryInAndSizeIn(category, size);
         } else if (category != null){
-            return repository.findByCategory(category);
+            return repository.findByCategoryIn(category);
         } else if (size != null) {
-            return repository.findBySize(size);
+            return repository.findBySizeIn(size);
         } else {
             return repository.findAll();
         }
