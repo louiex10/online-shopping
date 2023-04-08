@@ -38,6 +38,7 @@ class OrderDetailsController {
   // tag::get-aggregate-root[]
   @GetMapping("/api/orderDetails")
   List<OrderDetails> all(@RequestParam(value="orderStatus", required = false) String orderStatus) {
+    //@TODO: Use logged in customer to find order
     if(orderStatus != null){
       return orepository.findByOrderStatus(orderStatus);
     }else{
