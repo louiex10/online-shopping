@@ -1,3 +1,22 @@
 .dropmenuNav {
     list-style-type: none
 }
+
+.sticky-filter {
+    position: -webkit-sticky!important;
+    position: sticky!important;
+    top: 20px;
+    z-index: 1500;
+}
+
+#cart-items {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.remove-cart-btn {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
