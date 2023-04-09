@@ -11,6 +11,10 @@ const cartButtonDivClasses = ['position-absolute', 'start-0', 'bottom-0', 'end-0
 const cartButtonClasses = ['btn', 'btn-quick-add'];
 const productCardBodyClasses = ['card-body', 'px-0'];
 
+// -- Cart Card CSS Classes
+const cartCardContainerClasses = ["row", "mx-2", "py-4", "g-0", "border-bottom"];
+const removeItemDivClasses = ["col", "mt-1", "ml-1"];
+
 // -- On Startup --
 window.addEventListener('DOMContentLoaded', async function() {
     // Check URL params for filter on initial load
@@ -26,6 +30,11 @@ window.addEventListener('DOMContentLoaded', async function() {
     // Set Event Listener on filter button
     const filterButton = document.querySelector('#filterButton');
     filterButton.addEventListener('click', filterProducts);
+
+    const cartAmountButton = document.querySelector("#cart-amount-btn");
+    cartAmountButton.addEventListener('click', () => {
+        this.window.location.href = "cart.html";
+    });
 });
 
 // Filter products based on category and size
@@ -89,17 +98,21 @@ async function createOrGetShoppingCart() {
     // console.log(`Shopping Cart\n`, shoppingCarts);
     let shoppingCart;
     // Check if any open shopping cart
-    if (shoppingCarts) {
+    if (shoppingCarts.length > 0) {
         shoppingCart = shoppingCarts[0];
     } else {
-        // Create new one for user
-        const createCart = await fetch("https://valenciashopping.store/api/orderDetails", {
+        // Create new shopping cart for user
+        const url = `https://valenciashopping.store/api/orderDetails`
+        const body = {
+            orderStatus: "Shopping Cart",
+            customer: { id: 2 } //@TODO: add logic for logged in user id, hardcoded to id=2
+        };
+        const options = {
             method: "POST",
-            body: {
-                customer: { id: 2 },
-                orderStatus: "Shopping Cart"
-            } //@TODO: add logic for logged in user id, hardcoded to id=2
-        })
+            headers: new Headers({ 'content-type': 'application/json' }),
+        };
+        options.body = JSON.stringify(body);
+        const createCart = await fetch(url, options);
         shoppingCart = await createCart.json();
     }
     return shoppingCart;
@@ -108,9 +121,6 @@ async function createOrGetShoppingCart() {
 async function populateShoppingCart() {
     // fetch shopping cart from API
     const shoppingCart = await createOrGetShoppingCart();
-
-    // Check if any items in cart
-    console.log(`Shopping Cart\n`, shoppingCart);
 
     const orderItems = shoppingCart.orderItems;
     console.log("Order Items\n", orderItems);
@@ -124,7 +134,11 @@ async function populateShoppingCart() {
 
     const cartTotal = document.querySelector('#cart-total');
 
-    if (!shoppingCart.orderItems) {
+    // Get a reference to cart and clear it
+    const cartCardList = document.querySelector('#cart-items');
+    clearInnerHTML(cartCardList);
+
+    if (shoppingCart.orderItems.length <= 0) {
         console.log("No items in order");
         cartTotal.innerHTML = '$0.00';
         return
@@ -138,8 +152,6 @@ async function populateShoppingCart() {
     cartTotal.innerHTML = `$${total.toFixed(2)}`;
 
     // Set Cart Items
-    const cartCardList = document.querySelector('#cart-items');
-    clearInnerHTML(cartCardList);
     orderItems.forEach(item => {
         createCartCard(cartCardList, item, shoppingCart.id);
     });
@@ -148,7 +160,7 @@ async function populateShoppingCart() {
 
 function createCartCard(cartCardList, item, shoppingCartId) {
     const cartCardContainer = document.createElement("div");
-    const cartCardContainerClasses = ["row", "mx-2", "py-4", "g-0", "border-bottom"];
+
     cartCardContainer.classList.add(...cartCardContainerClasses);
     cartCardContainer.id = `cart-card-${item.id}`;
 
@@ -173,7 +185,6 @@ function createCartCard(cartCardList, item, shoppingCartId) {
     `;
     // Create Remove Button to easily remove items from cart
     const removeItemDiv = document.createElement("div");
-    const removeItemDivClasses = ["col", "mt-1", "ml-1"];
     removeItemDiv.classList.add(...removeItemDivClasses);
 
     const removeItemButton = document.createElement('button');
@@ -194,8 +205,6 @@ function createCartCard(cartCardList, item, shoppingCartId) {
         // Repopulate shopping cart
         populateShoppingCart();
     });
-
-
 }
 
 /**
@@ -239,19 +248,19 @@ function createProductCard(productsList, product) {
 
     cartButton.addEventListener('click', async(evt) => {
         evt.preventDefault();
-        console.log("add product to cart");
-        console.log(product.id);
+        //console.log("add product to cart");
+        //console.log(product.id);
         const shoppingCart = await createOrGetShoppingCart();
-        console.log(shoppingCart.id);
+        //console.log(shoppingCart.id);
         const addProduct = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCart.id}/addProduct/${product.id}`, { method: 'POST' });
         const resp = await addProduct.json();
-        console.log(resp);
+        //console.log(resp);
         await populateShoppingCart();
     });
 
     const productCardBody = document.createElement("div");
     productCardBody.classList.add(...productCardBodyClasses);
-    productCardBody.innerHTML = `<p class="text-decoration-none link-cover">${product.name}</p>
+    productCardBody.innerHTML = `<p class="text-decoration-none">${product.name}</p>
     <small class="text-muted d-block">${product.category}, Size ${product.size}</small>
     <p class="mt-2 mb-0 small">$${product.price.toFixed(2)}</p>`
     productCard.appendChild(productCardBody);

@@ -29,17 +29,16 @@
     <link rel="stylesheet" href="./css/category.css" />
 
     <!-- Page Title -->
-    <title>Valencia Online Shopping - Login</title>
-
+    <title>Valencia Online Shopping - Register</title>
 </head>
 
-<body class=" bg-light">
+<body class="bg-light">
 
     <!-- Main Section-->
-    <section class="mt-0 overflow-auto  vh-100 d-flex justify-content-center align-items-center p-4">
+    <section class="mt-0 d-flex justify-content-center align-items-center p-4">
         <!-- Page Content Goes Here -->
 
-        <!-- Login Form-->
+        <!-- Register Form -->
         <div class="col col-md-8 col-lg-6 col-xxl-5">
             <!-- Logo-->
             <a class="navbar-brand fw-bold fs-3 flex-shrink-0 order-0 align-self-center justify-content-center d-flex mx-0 px-0" href="./index.html">
@@ -50,25 +49,31 @@
             </a>
             <!-- / Logo-->
             <div class="shadow-xl p-4 p-lg-5 bg-white">
-                <h1 class="text-center fw-bold mb-5 fs-2">Login</h1>
+                <h1 class="text-center mb-5 fs-2 fw-bold">Register Account</h1>
                 <form>
                     <div class="form-group">
-                        <label class="form-label" for="login-email">Email address</label>
-                        <input type="email" class="form-control" id="login-email" placeholder="Enter your email">
+                        <label class="form-label" for="register-fname">First name</label>
+                        <input type="text" class="form-control" id="register-fname" placeholder="Enter your first name">
                     </div>
                     <div class="form-group">
-                        <label for="login-password" class="form-label d-flex justify-content-between align-items-center">
-                        Password
-                        </label>
-                        <input type="password" class="form-control" id="login-password" placeholder="Enter your password">
+                        <label class="form-label" for="register-lname">Last name</label>
+                        <input type="text" class="form-control" id="register-lname" placeholder="Enter your last name">
                     </div>
-                    <button type="submit" class="btn btn-dark d-block w-100 my-4" id="login-btn">Login</button>
+                    <div class="form-group">
+                        <label class="form-label" for="register-email">Email address</label>
+                        <input type="email" class="form-control" id="register-email" placeholder="name@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="register-password">Password</label>
+                        <input type="password" class="form-control" id="register-password" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn btn-dark d-block w-100 my-4" id="register-btn">Sign Up</button>
                 </form>
-                <p class="d-block text-center text-muted">New customer? <a class="text-muted" href="./register.html">Sign up for an account</a></p>
+                <p class="d-block text-center text-muted">Already registered? <a class="text-muted" href="./login.html">Login here.</a></p>
             </div>
 
         </div>
-        <!-- / Login Form-->
+        <!-- / Register Form -->
 
         <!-- /Page Content -->
     </section>
@@ -81,8 +86,9 @@
 
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
+
     <!-- Custom JS-->
-    <script src="./js/login.js"></script>
+    <script src="./js/register.js"></script>
 </body>
 
 </html>
