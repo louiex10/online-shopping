@@ -248,13 +248,13 @@ function createProductCard(productsList, product) {
 
     cartButton.addEventListener('click', async(evt) => {
         evt.preventDefault();
-        //console.log("add product to cart");
-        //console.log(product.id);
+        console.log("add product to cart");
+        console.log(product.id);
         const shoppingCart = await createOrGetShoppingCart();
-        //console.log(shoppingCart.id);
+        console.log(shoppingCart.id);
         const addProduct = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCart.id}/addProduct/${product.id}`, { method: 'POST' });
         const resp = await addProduct.json();
-        //console.log(resp);
+        console.log(resp);
         await populateShoppingCart();
     });
 
