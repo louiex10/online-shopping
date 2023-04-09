@@ -65,7 +65,7 @@ async function checkoutCart() {
 async function createOrGetShoppingCart() {
     // Check if shopping cart exists
     // @TODO: Add logic for sending customer info from jwt
-    const urlParams = new URLSearchParams({ "orderStatus": "Shopping Cart" }).toString();
+    const urlParams = new URLSearchParams({ orderStatus: "Shopping Cart", customerId: 2 }).toString();
     const getShoppingCart = await this.fetch(`https://valenciashopping.store/api/orderDetails?${urlParams}`)
     const shoppingCarts = await getShoppingCart.json();
     // console.log(`Shopping Cart\n`, shoppingCarts);
