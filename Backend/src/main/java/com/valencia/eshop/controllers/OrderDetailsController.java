@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.valencia.eshop.exceptions.OrderDetailsNotFoundException;
 import com.valencia.eshop.exceptions.OrderItemNotFoundException;
 import com.valencia.eshop.exceptions.ProductNotFoundException;
+import com.valencia.eshop.models.Customer;
 import com.valencia.eshop.models.OrderDetails;
 import com.valencia.eshop.models.OrderItem;
 import com.valencia.eshop.models.Product;
+import com.valencia.eshop.repositories.CustomerRepository;
 import com.valencia.eshop.repositories.OrderDetailsRepository;
 import com.valencia.eshop.repositories.OrderItemsRepository;
 import com.valencia.eshop.repositories.ProductRepository;
@@ -27,19 +29,35 @@ class OrderDetailsController {
   private final OrderDetailsRepository orepository;
   private final ProductRepository prepository;
   private final OrderItemsRepository oirepository;
+  private final CustomerRepository crepository;
 
-  OrderDetailsController(OrderDetailsRepository orepository, ProductRepository prepository, OrderItemsRepository oirepository) {
+  OrderDetailsController(OrderDetailsRepository orepository, 
+                         ProductRepository prepository, 
+                         OrderItemsRepository oirepository,
+                         CustomerRepository crepository) {
     this.orepository = orepository;
     this.prepository = prepository;
     this.oirepository = oirepository;
+    this.crepository = crepository;
   }
 
   // Aggregate root
   // tag::get-aggregate-root[]
   @GetMapping("/api/orderDetails")
-  List<OrderDetails> all(@RequestParam(value="orderStatus", required = false) String orderStatus) {
+  List<OrderDetails> all(@RequestParam(value="orderStatus", required = false) String orderStatus,
+                         @RequestParam(value="customerId", required = false) Long customerId) {
     //@TODO: Use logged in customer to find order
-    if(orderStatus != null){
+    if(orderStatus != null && customerId != null){
+      Customer customer = crepository.findById(customerId)
+      .orElseThrow(() -> new OrderDetailsNotFoundException(customerId));
+      return orepository.findByCustomerAndOrderStatus(customer, orderStatus);
+    }
+    else if(customerId != null){
+      Customer customer = crepository.findById(customerId)
+      .orElseThrow(() -> new OrderDetailsNotFoundException(customerId));
+      return orepository.findByCustomer(customer);
+    }
+    else if(orderStatus != null){
       return orepository.findByOrderStatus(orderStatus);
     }else{
       return orepository.findAll();     
