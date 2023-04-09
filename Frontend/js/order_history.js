@@ -39,6 +39,9 @@ async function populateOrders(customerId = 2) {
     const ordersList = document.querySelector("#ordersList");
     clearInnerHTML(ordersList);
 
+    // Most recent orders first
+    orders.reverse()
+
     orders.forEach((order) => {
         addOrder(order, ordersList);
     });
@@ -124,6 +127,14 @@ function createOrderHeader(order, orderContainer) {
     orderHeader.innerHTML = `
     <div class="d-flex align-items-center mt-2">
         <div class="column mx-1">
+            <div class="row">
+                <h6>Order ID</h6>
+            </div>
+            <div class="row">
+                <p class="small">${order.id}</p>
+            </div>
+        </div>
+        <div class="column ms-5">
             <div class="row">
                 <h6>Order Placed</h6>
             </div>
