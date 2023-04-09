@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="./css/category.css" />
 
     <!-- Page Title -->
-    <title>Valencia Online Shopping - Order History</title>
+    <title>Valencia Online Shopping - Admin Console</title>
 
 </head>
 
@@ -102,68 +102,31 @@
     </nav>
     <!-- / Navbar-->
 
-    <!-- Order History Title -->
+    <!-- Admin Title -->
     <div class="container-fluid" data-aos="fade-in">
-        <h1 class="fw-bold fs-3 mb-2">Order History</h1>
-        <h5 class="mb-2" id="customer-name">Customer Name:</h5>
-        <h5 class="mb-2" id="customer-id">Customer ID:</h5>
-        <h5 class="mb-2" id="customer-email">Email:</h5>
-        <h5 class="mb-4" id="num-orders">Orders:</h5>
+        <h1 class="fw-bold fs-3 mb-2">Dashboard</h1>
     </div>
-    <!-- /Order History Title -->
+    <!-- /Admin Title -->
 
     <!-- Main Section-->
     <section class="mt-0">
-
+        <!-- Customer Table -->
         <div class="container-fluid" data-aos="fade-in">
-            <!-- Orders -->
-            <!-- API Call to /api/orderDetails fills orders here-->
-            <div class="row g-0" id="ordersList">
-                <!-- Order -->
-                <div class="card order-card mb-2">
-                    <div class="card-header order-header">
-
-                        <div class="d-flex align-items-center mt-2">
-                            <div class="column mx-1">
-                                <div class="row">
-                                    <h6>Order Placed</h6>
-                                </div>
-                                <div class="row">
-                                    <p class="small">March 1st, 2023</p>
-                                </div>
-                            </div>
-                            <div class="column mx-5">
-                                <div class="row">
-                                    <h6>Total</h6>
-                                </div>
-                                <div class="row">
-                                    <p class="small" id="cart-total">$0.00</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Delivered March 1st, 2023</h5>
-                        <p class="card-text">Your order was left in the mail room.</p>
-                        <div class="table-responsive cart-items" id="cart-items">
-                            <table class="table align-middle">
-                                <!-- Cart Items -->
-                                <!-- populated by cart items API call -->
-                                <tbody class="border-0">
-                                </tbody>
-                                <!-- / Cart Items-->
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Order -->
-            </div>
-            <!-- / Orders -->
+            <h5 class="mb-3 mt-3">Customer List</h5>
+            <table class="table table-hover table-striped" id="custTable">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
-
-        <!-- /Page Content -->
+        <!-- Customer Table -->
     </section>
+
     <!-- / Main Section-->
 
     <!-- Footer -->
@@ -185,7 +148,7 @@
     <script src="./assets/js/theme.bundle.js"></script>
 
     <!-- Custom JS-->
-    <script src="./js/order_history.js"></script>
+    <script src="./js/admin.js"></script>
 </body>
 
 </html>
