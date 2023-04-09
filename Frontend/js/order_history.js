@@ -22,9 +22,11 @@ async function populateOrders(customerId = 2) {
     // Display Customer Info
     const custName = document.querySelector("#customer-name");
     const custEmail = document.querySelector("#customer-email");
+    const custId = document.querySelector("#customer-id");
     const numOrders = document.querySelector("#num-orders");
 
-    custName.textContent = `Customer: ${customer.name}`;
+    custId.textContent = `Customer ID: ${customer.id}`;
+    custName.textContent = `Customer Name: ${customer.name}`;
     custEmail.textContent = `Email: ${customer.email}`;
 
     const urlParams = new URLSearchParams({ orderStatus: "Shipped", customerId: customerId }).toString();

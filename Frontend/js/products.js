@@ -243,7 +243,7 @@ function createProductCard(productsList, product) {
     const cartButton = document.createElement("button");
     cartButton.classList.add(...cartButtonClasses);
     cartButtonDiv.appendChild(cartButton);
-    cartButton.innerHTML = '<i class="ri-add-line me-2"></i> Add to Cart';
+    cartButton.innerHTML = '<i class="ri-add-line me-2 outline-focus"></i> Add to Cart';
     cartButton.id = `productList-${product.id}`
 
     cartButton.addEventListener('click', async(evt) => {
