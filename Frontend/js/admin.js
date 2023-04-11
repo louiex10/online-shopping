@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     // For each customer, add a row to customer table
     customers.forEach((c) => {
-        createRow(tbody, [c.id, c.name, c.email]);
+        createRow(tbody, [c.id, c.name, c.email, c.roles]);
     })
 
 });
@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', async function() {
  * @param {Array.<String>} data Array with data for each cell.
  * @returns {void} Nothing is returned. tbody is mutated directly.
  */
-function createRow(tbody, data = ['1', '2', '3']) {
+function createRow(tbody, data = ['1', '2', '3', '4']) {
     const trow = tbody.insertRow();
     for (let i = 0; i < data.length; i++) {
         const tc1 = trow.insertCell();
