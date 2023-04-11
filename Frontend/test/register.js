@@ -10,7 +10,7 @@ form.addEventListener('submit', async function(e) {
     console.log(email);
     console.log(password);
 
-    const register = await fetch("http://localhost:8080/register", {
+    const register = await fetch("https://valenciashopping.store/register", {
         method: "post",
         headers: {
             'Accept': 'application/json',

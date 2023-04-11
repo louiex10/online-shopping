@@ -15,6 +15,18 @@ const productCardBodyClasses = ['card-body', 'px-0'];
 const cartCardContainerClasses = ["row", "mx-2", "py-4", "g-0", "border-bottom"];
 const removeItemDivClasses = ["col", "mt-1", "ml-1"];
 
+const token = localStorage.getItem("token");
+
+async function getCustomerLoggedIn(username) {
+    const getCustomer = await fetch(`https://valenciashopping.store/api/customers/me`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const customer = await getCustomer.json();
+    return customer;
+}
+
 // -- On Startup --
 window.addEventListener('DOMContentLoaded', async function() {
     // Check URL params for filter on initial load
@@ -77,7 +89,9 @@ function clearInnerHTML(e1) {
 
 async function populateProductList(params = "") {
     // fetch product data from API
-    const getProducts = await this.fetch(`https://valenciashopping.store/api/products${params}`);
+    const getProducts = await this.fetch(`https://valenciashopping.store/api/products${params}`, {
+        headers: { "Authorization": `Bearer ${token}` }
+    });
     const products = await getProducts.json();
     const productsList = document.querySelector('#productList');
 
@@ -91,9 +105,11 @@ async function populateProductList(params = "") {
 
 async function createOrGetShoppingCart() {
     // Check if shopping cart exists
-    // @TODO: Add logic for sending customer info from jwt
-    const urlParams = new URLSearchParams({ "orderStatus": "Shopping Cart", "customerId": 2 }).toString();
-    const getShoppingCart = await this.fetch(`https://valenciashopping.store/api/orderDetails?${urlParams}`)
+    const customer = await getCustomerLoggedIn();
+    const urlParams = new URLSearchParams({ "orderStatus": "Shopping Cart", "customerId": customer.id }).toString();
+    const getShoppingCart = await this.fetch(`https://valenciashopping.store/api/orderDetails?${urlParams}`, {
+        headers: { "Authorization": `Bearer ${token}` }
+    });
     const shoppingCarts = await getShoppingCart.json();
     // console.log(`Shopping Cart\n`, shoppingCarts);
     let shoppingCart;
@@ -105,11 +121,11 @@ async function createOrGetShoppingCart() {
         const url = `https://valenciashopping.store/api/orderDetails`
         const body = {
             orderStatus: "Shopping Cart",
-            customer: { id: 2 } //@TODO: add logic for logged in user id, hardcoded to id=2
+            customer: { id: customer.id }
         };
         const options = {
             method: "POST",
-            headers: new Headers({ 'content-type': 'application/json' }),
+            headers: new Headers({ 'content-type': 'application/json', "Authorization": `Bearer ${token}` }),
         };
         options.body = JSON.stringify(body);
         const createCart = await fetch(url, options);
@@ -199,7 +215,10 @@ function createCartCard(cartCardList, item, shoppingCartId) {
         evt.preventDefault();
         //console.log(shoppingCartId, item.id);
         // Delete item
-        const deleteItem = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCartId}/removeItem/${item.id}`, { method: "DELETE" });
+        const deleteItem = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCartId}/removeItem/${item.id}`, {
+            method: "DELETE",
+            headers: { "Authorization": `Bearer ${token}` }
+        });
         const resp = await deleteItem.json();
         //console.log(resp);
         // Repopulate shopping cart
@@ -252,7 +271,10 @@ function createProductCard(productsList, product) {
         console.log(product.id);
         const shoppingCart = await createOrGetShoppingCart();
         console.log(shoppingCart.id);
-        const addProduct = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCart.id}/addProduct/${product.id}`, { method: 'POST' });
+        const addProduct = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCart.id}/addProduct/${product.id}`, {
+            method: 'POST',
+            headers: { "Authorization": `Bearer ${token}` }
+        });
         const resp = await addProduct.json();
         console.log(resp);
         await populateShoppingCart();
