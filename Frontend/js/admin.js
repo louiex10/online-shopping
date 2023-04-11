@@ -1,3 +1,6 @@
+// Auth token
+const token = localStorage.getItem("token");
+
 // -- On Startup --
 window.addEventListener('DOMContentLoaded', async function() {
     console.log('Admin Panel');
@@ -8,7 +11,11 @@ window.addEventListener('DOMContentLoaded', async function() {
     const tbody = custTable.createTBody();
 
     // fetch customer data from api
-    const getCustomers = await this.fetch('https://valenciashopping.store/api/customers');
+    const getCustomers = await this.fetch('https://valenciacollege.store/api/customers', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     const customers = await getCustomers.json();
 
     // For each customer, add a row to customer table

@@ -1,10 +1,10 @@
-fetch('https://valenciashopping.store/api/products').then((data)=> {
-  return data.json();
-})
-.then ((completedata) => {
-  let products="";
-  completedata.map((values)=>{
-    products+=`
+fetch('https://valenciacollege.store/api/products').then((data) => {
+        return data.json();
+    })
+    .then((completedata) => {
+        let products = "";
+        completedata.map((values) => {
+            products += `
     <div class="hoverwrapper">
     <div class="wrapper">
          <div class="listing">
@@ -25,9 +25,9 @@ fetch('https://valenciashopping.store/api/products').then((data)=> {
         </div>
 
         `;
-      });
-      document.getElementById("listings").innerHTML=products;
+        });
+        document.getElementById("listings").innerHTML = products;
 
-}).catch((err)=>{
- console.log(err);
-})
+    }).catch((err) => {
+        console.log(err);
+    })

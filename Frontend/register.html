@@ -50,22 +50,31 @@
             <!-- / Logo-->
             <div class="shadow-xl p-4 p-lg-5 bg-white">
                 <h1 class="text-center mb-5 fs-2 fw-bold">Register Account</h1>
-                <form>
+                <div id="alert-space"></div>
+                <form class="needs-validation" id="register-form">
                     <div class="form-group">
                         <label class="form-label" for="register-fname">First name</label>
-                        <input type="text" class="form-control" id="register-fname" placeholder="Enter your first name">
+                        <input type="text" required class="form-control" id="register-fname" placeholder="Enter your first name">
+                        <div class="valid-feedback">Looks ok!</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="register-lname">Last name</label>
-                        <input type="text" class="form-control" id="register-lname" placeholder="Enter your last name">
+                        <input type="text" required class="form-control" id="register-lname" placeholder="Enter your last name">
+                        <div class="valid-feedback">Looks ok!</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="register-email">Email address</label>
-                        <input type="email" class="form-control" id="register-email" placeholder="name@email.com">
+                        <input type="email" required class="form-control" id="register-email" placeholder="name@email.com">
+                        <div class="valid-feedback">Looks ok!</div>
+                        <div class="invalid-feedback">Enter a valid email address.</div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="register-password">Password</label>
-                        <input type="password" class="form-control" id="register-password" placeholder="Enter your password">
+                        <input type="password" required class="form-control" id="register-password" placeholder="Enter your password">
+                        <div class="valid-feedback">Looks ok!</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <button type="submit" class="btn btn-dark d-block w-100 my-4" id="register-btn">Sign Up</button>
                 </form>

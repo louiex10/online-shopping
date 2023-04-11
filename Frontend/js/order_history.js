@@ -1,3 +1,15 @@
+const token = localStorage.getItem("token");
+
+async function getCustomerLoggedIn(username) {
+    const getCustomer = await fetch(`https://valenciacollege.store/api/customers/me`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const customer = await getCustomer.json();
+    return customer;
+}
+
 // -- On Startup --
 window.addEventListener('DOMContentLoaded', async function() {
     // Check URL params for filter on initial load
@@ -7,15 +19,20 @@ window.addEventListener('DOMContentLoaded', async function() {
     if (urlParams.has('customerId')) {
         await populateOrders(urlParams.get('customerId'));
     } else {
-        await populateOrders();
+        const customer = await getCustomerLoggedIn();
+        await populateOrders(customer.id);
     }
 
 });
 
-async function populateOrders(customerId = 2) {
+async function populateOrders(customerId) {
     // Get Customer Info
     console.log(customerId);
-    const getCustomer = await fetch(`https://valenciashopping.store/api/customers/${customerId}`);
+    const getCustomer = await fetch(`https://valenciacollege.store/api/customers/${customerId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     const customer = await getCustomer.json();
     console.log(customer);
 
@@ -30,7 +47,11 @@ async function populateOrders(customerId = 2) {
     custEmail.textContent = `Email: ${customer.email}`;
 
     const urlParams = new URLSearchParams({ orderStatus: "Shipped", customerId: customerId }).toString();
-    const getOrders = await this.fetch(`https://valenciashopping.store/api/orderDetails?${urlParams}`)
+    const getOrders = await this.fetch(`https://valenciacollege.store/api/orderDetails?${urlParams}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     const orders = await getOrders.json();
     numOrders.textContent = `Orders: ${orders.length}`;
     if (orders.length <= 0) {
