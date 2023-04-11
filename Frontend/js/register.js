@@ -3,14 +3,15 @@ window.addEventListener('DOMContentLoaded', async function() {
     // Register Button
     const registerButton = document.querySelector("#register-btn");
     registerButton.addEventListener('click', async(evt) => {
+        registerButton.disabled = true;
         evt.preventDefault();
-        await register();
+        await register(registerButton);
         //this.window.location.href = "login.html";
     });
 
 });
 
-async function register() {
+async function register(registerButton) {
     const fname = document.querySelector("#register-fname").value;
     const lname = document.querySelector("#register-lname").value;
     const name = fname + " " + lname;
@@ -21,12 +22,14 @@ async function register() {
         console.log("fill in input")
         const form = document.querySelector("#register-form");
         form.classList.add('was-validated');
+        registerButton.disabled = false;
         return;
     }
 
     if (email && !validEmail(email)) {
         const form = document.querySelector("#register-form");
         form.classList.add('was-validated');
+        registerButton.disabled = false;
         return;
     }
 
@@ -40,12 +43,13 @@ async function register() {
         this.window.location.href = "login.html?registered=true";
     } else {
         createAlert();
+        registerButton.disabled = false;
         //console.log("username already exists");
     }
 }
 
 function validEmail(email) {
-    const re = /\S+@\S+\.\S+/;
+    const re = /\S+@\S+/;
     return re.test(email);
 }
 
