@@ -1,7 +1,7 @@
 const token = localStorage.getItem("token");
 
 async function getCustomerLoggedIn(username) {
-    const getCustomer = await fetch(`https://valenciacollege.store/api/customers/me`, {
+    const getCustomer = await fetch(`https://valenciashopping.store/api/customers/me`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -60,7 +60,7 @@ async function checkoutCart() {
     }
 
     // Make call to update order status
-    const url = `https://valenciacollege.store/api/orderDetails/${shoppingCart.id}`
+    const url = `https://valenciashopping.store/api/orderDetails/${shoppingCart.id}`
     const body = { orderStatus: "Shipped" };
     const options = {
         method: "PUT",
@@ -77,7 +77,7 @@ async function createOrGetShoppingCart() {
     // Check if shopping cart exists
     const customer = await getCustomerLoggedIn();
     const urlParams = new URLSearchParams({ orderStatus: "Shopping Cart", customerId: customer.id }).toString();
-    const getShoppingCart = await this.fetch(`https://valenciacollege.store/api/orderDetails?${urlParams}`, {
+    const getShoppingCart = await this.fetch(`https://valenciashopping.store/api/orderDetails?${urlParams}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -90,7 +90,7 @@ async function createOrGetShoppingCart() {
         shoppingCart = shoppingCarts[0];
     } else {
         // Create new shopping cart for user
-        const url = `https://valenciacollege.store/api/orderDetails`
+        const url = `https://valenciashopping.store/api/orderDetails`
         const body = {
             orderStatus: "Shopping Cart",
             customer: { id: customer.id }
@@ -187,7 +187,7 @@ async function createCartCard(cartList, item, shoppingCartId) {
         evt.preventDefault();
         //console.log(shoppingCartId, item.id);
         // Delete item
-        const deleteItem = await fetch(`https://valenciacollege.store/api/orderDetails/${shoppingCartId}/removeItem/${item.id}`, {
+        const deleteItem = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCartId}/removeItem/${item.id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`

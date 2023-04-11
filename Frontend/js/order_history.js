@@ -1,7 +1,7 @@
 const token = localStorage.getItem("token");
 
 async function getCustomerLoggedIn(username) {
-    const getCustomer = await fetch(`https://valenciacollege.store/api/customers/me`, {
+    const getCustomer = await fetch(`https://valenciashopping.store/api/customers/me`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', async function() {
 async function populateOrders(customerId) {
     // Get Customer Info
     console.log(customerId);
-    const getCustomer = await fetch(`https://valenciacollege.store/api/customers/${customerId}`, {
+    const getCustomer = await fetch(`https://valenciashopping.store/api/customers/${customerId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -47,7 +47,7 @@ async function populateOrders(customerId) {
     custEmail.textContent = `Email: ${customer.email}`;
 
     const urlParams = new URLSearchParams({ orderStatus: "Shipped", customerId: customerId }).toString();
-    const getOrders = await this.fetch(`https://valenciacollege.store/api/orderDetails?${urlParams}`, {
+    const getOrders = await this.fetch(`https://valenciashopping.store/api/orderDetails?${urlParams}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

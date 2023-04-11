@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     // createRow(tbody, ['3', 'Will', 'will@mail.valenciacollege.edu']);
 
     // fetch customer data from api
-    const getCustomers = await this.fetch('https://valenciacollege.store/api/customers');
+    const getCustomers = await this.fetch('https://valenciashopping.store/api/customers');
     const customers = await getCustomers.json();
 
     // For each customer, add a row to customer table

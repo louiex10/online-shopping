@@ -17,7 +17,7 @@ async function login() {
         return;
     }
 
-    const response = await fetch('https://valenciacollege.store/api/token', {
+    const response = await fetch('https://valenciashopping.store/api/token', {
         method: 'POST',
         headers: new Headers({ 'content-type': 'application/json' }),
         body: JSON.stringify({ username, password })

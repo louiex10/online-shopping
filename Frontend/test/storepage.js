@@ -1,4 +1,4 @@
-fetch('https://valenciacollege.store/api/products').then((data) => {
+fetch('https://valenciashopping.store/api/products').then((data) => {
         return data.json();
     })
     .then((completedata) => {
