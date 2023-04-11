@@ -29,18 +29,12 @@ window.addEventListener('DOMContentLoaded', async function() {
     const customers = await getCustomers.json();
 
     // fetch customer data from api
-    const getOrders = await this.fetch('https://valenciashopping.store/api/orderDetails', {
+    const getOrders = await this.fetch('https://valenciashopping.store/api/orderDetails?orderStatus=Shipped', {
         headers: {
             Authorization: `Bearer ${token}`
         }
     });
     const orders = await getOrders.json();
-    console.log(orders);
-
-    // For each customer, add a row to customer table
-    customers.forEach((c) => {
-        createRow(tbody, [c.id, c.name, c.email, c.roles]);
-    })
 
     // Get KPIs
     const totalOrdersDiv = document.querySelector('#total-orders');
@@ -69,6 +63,26 @@ window.addEventListener('DOMContentLoaded', async function() {
     totalCustomersDiv.textContent = numberFormatter.format(totalCustomers);
     totalRevenueDiv.textContent = `${totalRevenue}`;
     totalItemsSoldDiv.textContent = numberFormatter.format(itemsSold);
+
+    // Group orders by customer id
+    const ordersByCustomer = orders.reduce((acc, o) => {
+        const customer = o.customer;
+        if (!acc[customer.id]) {
+            acc[customer.id] = {
+                customer,
+                orders: 1
+            };
+        } else {
+            acc[customer.id].orders++;
+        }
+        return acc;
+    }, {});
+
+    // For each customer, add a row to customer table
+    customers.forEach((c, i) => {
+        const orders = ordersByCustomer[c.id] ? ordersByCustomer[c.id].orders : 0;
+        createRow(tbody, [c.id, c.name, c.email, orders, c.roles]);
+    })
 });
 
 /**
