@@ -17,6 +17,11 @@ const removeItemDivClasses = ["col", "mt-1", "ml-1"];
 
 const token = localStorage.getItem("token");
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 async function getCustomerLoggedIn(username) {
     const getCustomer = await fetch(`https://valenciashopping.store/api/customers/me`, {
         headers: {
@@ -165,7 +170,8 @@ async function populateShoppingCart() {
     orderItems.forEach(item => {
         total += item.product.price * item.quantity;
     })
-    cartTotal.innerHTML = `$${total.toFixed(2)}`;
+    total = currencyFormatter.format(total);
+    cartTotal.innerHTML = total;
 
     // Set Cart Items
     orderItems.forEach(item => {
@@ -180,7 +186,8 @@ function createCartCard(cartCardList, item, shoppingCartId) {
     cartCardContainer.classList.add(...cartCardContainerClasses);
     cartCardContainer.id = `cart-card-${item.id}`;
 
-    const total = 0 + item.product.price * item.quantity;
+    let total = 0 + item.product.price * item.quantity;
+    total = currencyFormatter.format(total);
     cartCardContainer.innerHTML = `
     <div class="col-2 position-relative">
         <picture class="d-block ">
@@ -194,7 +201,7 @@ function createCartCard(cartCardList, item, shoppingCartId) {
             </h6>
             <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: ${item.product.size} / Qty: ${item.quantity}</span>
         </div>
-        <p class="fw-bolder text-end text-muted m-0">$${total.toFixed(2)}</p>
+        <p class="fw-bolder text-end text-muted m-0">${total}</p>
     </div>
     <div class="col mt-1 ml-1" id="rmitem-${shoppingCartId}-${item.id}">
     </div>
@@ -284,7 +291,7 @@ function createProductCard(productsList, product) {
     productCardBody.classList.add(...productCardBodyClasses);
     productCardBody.innerHTML = `<p class="text-decoration-none">${product.name}</p>
     <small class="text-muted d-block">${product.category}, Size ${product.size}</small>
-    <p class="mt-2 mb-0 small">$${product.price.toFixed(2)}</p>`
+    <p class="mt-2 mb-0 small">${currencyFormatter.format(product.price)}</p>`
     productCard.appendChild(productCardBody);
 
     productsList.appendChild(productContainer);

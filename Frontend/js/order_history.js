@@ -1,5 +1,15 @@
 const token = localStorage.getItem("token");
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
+// Whole number formatter
+const numberFormatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+});
+
 async function getCustomerLoggedIn(username) {
     const getCustomer = await fetch(`https://valenciashopping.store/api/customers/me`, {
         headers: {
@@ -53,7 +63,7 @@ async function populateOrders(customerId) {
         }
     });
     const orders = await getOrders.json();
-    numOrders.textContent = `Orders: ${orders.length}`;
+    numOrders.textContent = `Orders: ${numberFormatter.format(orders.length)}`;
     if (orders.length <= 0) {
         console.log(`no orders for user ${customerId}`);
         return
@@ -144,7 +154,7 @@ function createOrderHeader(order, orderContainer) {
     orderItems.forEach(item => {
         total += item.product.price * item.quantity;
     })
-    total = total.toFixed(2);
+    total = currencyFormatter.format(total);
     const dateObj = formatDate(order.orderDate);
     const numItems = order.orderItems.length;
     orderHeader.innerHTML = `
@@ -170,7 +180,7 @@ function createOrderHeader(order, orderContainer) {
                 <h6>Total</h6>
             </div>
             <div class="row">
-                <p class="small" id="cart-total">$${total}</p>
+                <p class="small" id="cart-total">${total}</p>
             </div>
         </div>
         <div class="column mx-5">
@@ -178,7 +188,7 @@ function createOrderHeader(order, orderContainer) {
                 <h6>Items</h6>
             </div>
             <div class="row">
-                <p class="small" id="cart-total">${numItems}</p>
+                <p class="small" id="cart-total">${numberFormatter.format(numItems)}</p>
             </div>
         </div>
     </div>
@@ -195,7 +205,7 @@ async function createCartCard(cartList, item) {
     const cartCardBodyClasses = ["row", "mx-0", "py-4", "g-0", "border-bottom"];
     cartCardBody.classList.add(...cartCardBodyClasses);
 
-    const total = (item.product.price * item.quantity).toFixed(2);
+    const total = currencyFormatter.format(item.product.price * item.quantity);
 
     cartCardBody.innerHTML = `
     <div class="col-2 position-relative">
@@ -210,7 +220,7 @@ async function createCartCard(cartList, item) {
             </h6>
             <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: ${item.product.size} / Qty: ${item.quantity}</span>
         </div>
-        <p class="fw-bolder text-end text-muted m-0">$${total}</p>
+        <p class="fw-bolder text-end text-muted m-0">${total}</p>
     </div>
     `;
     cartList.appendChild(cartCardBody);

@@ -1,5 +1,10 @@
 const token = localStorage.getItem("token");
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 async function getCustomerLoggedIn(username) {
     const getCustomer = await fetch(`https://valenciashopping.store/api/customers/me`, {
         headers: {
@@ -134,7 +139,8 @@ async function populateShoppingCart() {
     orderItems.forEach(item => {
         total += item.product.price * item.quantity;
     })
-    cartTotal.innerHTML = `$${total.toFixed(2)}`;
+    total = currencyFormatter.format(total);
+    cartTotal.innerHTML = `${total}`;
 
 
 
@@ -160,7 +166,7 @@ async function createCartCard(cartList, item, shoppingCartId) {
     const cartCardBodyClasses = ["row", "mx-0", "py-4", "g-0", "border-bottom"];
     cartCardBody.classList.add(...cartCardBodyClasses);
 
-    const total = (item.product.price * item.quantity).toFixed(2);
+    const total = currencyFormatter.format(item.product.price * item.quantity);
 
     cartCardBody.innerHTML = `
     <div class="col-2 position-relative">
@@ -176,7 +182,7 @@ async function createCartCard(cartList, item, shoppingCartId) {
             </h6>
             <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: ${item.product.size} / Qty: ${item.quantity}</span>
         </div>
-        <p class="fw-bolder text-end text-muted m-0">$${total}</p>
+        <p class="fw-bolder text-end text-muted m-0">${total}</p>
     </div>
     `;
     // Get reference to xButton

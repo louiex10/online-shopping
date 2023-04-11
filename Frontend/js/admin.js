@@ -1,6 +1,16 @@
 // Auth token
 const token = localStorage.getItem("token");
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
+// Whole number formatter
+const numberFormatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+});
+
 // -- On Startup --
 window.addEventListener('DOMContentLoaded', async function() {
     console.log('Admin Panel');
@@ -18,11 +28,47 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
     const customers = await getCustomers.json();
 
+    // fetch customer data from api
+    const getOrders = await this.fetch('https://valenciashopping.store/api/orderDetails', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const orders = await getOrders.json();
+    console.log(orders);
+
     // For each customer, add a row to customer table
     customers.forEach((c) => {
         createRow(tbody, [c.id, c.name, c.email, c.roles]);
     })
 
+    // Get KPIs
+    const totalOrdersDiv = document.querySelector('#total-orders');
+    const totalCustomersDiv = document.querySelector('#total-customers');
+    const totalRevenueDiv = document.querySelector('#total-revenue');
+    const totalItemsSoldDiv = document.querySelector('#total-items-sold');
+
+    // Calculate KPIs
+    const totalOrders = orders.length;
+    const totalCustomers = customers.length;
+    let totalRevenue = 0;
+    let itemsSold = 0;
+    orders.forEach((o) => {
+
+        o.orderItems.forEach((oi) => {
+            totalRevenue += oi.product.price * oi.quantity;
+            itemsSold += oi.quantity;
+        });
+    });
+
+    totalRevenue = currencyFormatter.format(totalRevenue);
+
+
+    // Set KPIs
+    totalOrdersDiv.textContent = numberFormatter.format(totalOrders);
+    totalCustomersDiv.textContent = numberFormatter.format(totalCustomers);
+    totalRevenueDiv.textContent = `${totalRevenue}`;
+    totalItemsSoldDiv.textContent = numberFormatter.format(itemsSold);
 });
 
 /**
