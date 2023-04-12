@@ -17,6 +17,10 @@ const removeItemDivClasses = ["col", "mt-1", "ml-1"];
 
 const token = localStorage.getItem("token");
 
+// Current Page
+let currPage = 1;
+const pageSize = 12;
+
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -105,6 +109,101 @@ async function populateProductList(params = "") {
 
     products.forEach(product => {
         createProductCard(productsList, product);
+    });
+
+    // Add Pagination
+    createPagination();
+}
+
+function createPagination(itemListId = "#productList") {
+    currPage = 1;
+    const itemList = document.querySelector(itemListId);
+
+    // Add Pagination
+    const productPaginator = document.querySelector('#productPaginator');
+    clearInnerHTML(productPaginator);
+
+    // Previous Button
+    const prevButton = document.createElement('li');
+    prevButton.classList.add('page-item');
+    const prevButtonLink = document.createElement('a');
+    prevButtonLink.classList.add('page-link');
+    prevButtonLink.setAttribute('href', '#');
+    prevButtonLink.innerText = 'Previous';
+    prevButton.appendChild(prevButtonLink);
+    productPaginator.appendChild(prevButton);
+
+    prevButton.addEventListener('click', () => {
+        if (currPage > 1) {
+            const pageButtonOld = document.querySelector(`#page-${currPage}`);
+            pageButtonOld.classList.remove('active');
+            currPage--;
+            const pageButtonNew = document.querySelector(`#page-${currPage}`);
+            pageButtonNew.classList.add('active');
+            turnPage(itemList);
+        }
+    });
+
+    console.log(Math.ceil(itemList.children.length / pageSize));
+
+    for (let i = 0; i < Math.ceil(itemList.children.length / pageSize); i++) {
+        const pageButton = document.createElement('li');
+        pageButton.id = "page-" + (i + 1);
+        pageButton.classList.add('page-item');
+        const pageButtonLink = document.createElement('a');
+        pageButtonLink.classList.add('page-link');
+        pageButtonLink.setAttribute('href', '#');
+        pageButtonLink.innerText = i + 1;
+        pageButton.appendChild(pageButtonLink);
+        productPaginator.appendChild(pageButton);
+        if (i === 0) pageButton.classList.add('active');
+        pageButton.addEventListener('click', (evt) => {
+            const pageButtonOld = document.querySelector(`#page-${currPage}`);
+            pageButtonOld.classList.remove('active');
+            currPage = i + 1;
+            const pageButtonNew = document.querySelector(`#page-${currPage}`);
+            pageButtonNew.classList.add('active');
+            turnPage(itemList);
+        });
+    }
+
+    // Next Button
+    const nextButton = document.createElement('li');
+    nextButton.classList.add('page-item');
+    const nextButtonLink = document.createElement('a');
+    nextButtonLink.classList.add('page-link');
+    nextButtonLink.setAttribute('href', '#');
+    nextButtonLink.innerText = 'Next';
+    nextButton.appendChild(nextButtonLink);
+    productPaginator.appendChild(nextButton);
+
+    nextButton.addEventListener('click', () => {
+        if (currPage < Math.ceil(itemList.children.length / pageSize)) {
+            const pageButtonOld = document.querySelector(`#page-${currPage}`);
+            pageButtonOld.classList.remove('active');
+            currPage++;
+            const pageButtonNew = document.querySelector(`#page-${currPage}`);
+            pageButtonNew.classList.add('active');
+            turnPage(itemList);
+        }
+    });
+
+    // Hide products that are not on current page
+    turnPage(itemList);
+}
+
+function turnPage(itemList) {
+    let start = (currPage - 1) * pageSize;
+    let end = (currPage - 1) * pageSize + pageSize - 1;
+    end = end > itemList.children.length - 1 ? itemList.children.length - 1 : end;
+    console.log("start:", start);
+    console.log(end);
+    itemList.children.forEach((product, index) => {
+        if (index >= start && index <= end) {
+            product.classList.remove('d-none');
+        } else {
+            product.classList.add('d-none');
+        }
     });
 }
 
