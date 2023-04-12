@@ -1,5 +1,6 @@
 package com.valencia.eshop.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -7,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
     
     private @Id @GeneratedValue long id;
     private String name;

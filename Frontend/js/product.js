@@ -10,7 +10,7 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 });
 
 async function getCustomerLoggedIn(username) {
-    const getCustomer = await fetch(`https://valenciashopping.store/api/customers/me`, {
+    const getCustomer = await fetch(`http://localhost:8080/api/customers/me`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', async function() {
 });
 
 async function populateProduct(productId) {
-    const getProduct = await fetch(`https://valenciashopping.store/api/products/${productId}`, {
+    const getProduct = await fetch(`http://localhost:8080/api/products/${productId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -77,7 +77,7 @@ async function populateProduct(productId) {
         console.log(product.id);
         const shoppingCart = await createOrGetShoppingCart();
         console.log(shoppingCart.id);
-        const addProduct = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCart.id}/addProduct/${product.id}`, {
+        const addProduct = await fetch(`http://localhost:8080/api/orderDetails/${shoppingCart.id}/addProduct/${product.id}`, {
             method: 'POST',
             headers: { "Authorization": `Bearer ${token}` }
         });
@@ -97,7 +97,7 @@ async function populateSuggestions(product) {
     const suggestions = document.querySelector("#suggested-products");
     clearInnerHTML(suggestions);
     const prodParams = new URLSearchParams({ "category": product.category }).toString();
-    const getProducts = await fetch(`https://valenciashopping.store/api/products?${prodParams}`, {
+    const getProducts = await fetch(`http://localhost:8080/api/products?${prodParams}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -168,7 +168,7 @@ async function createOrGetShoppingCart() {
     // Check if shopping cart exists
     const customer = await getCustomerLoggedIn();
     const urlParams = new URLSearchParams({ "orderStatus": "Shopping Cart", "customerId": customer.id }).toString();
-    const getShoppingCart = await this.fetch(`https://valenciashopping.store/api/orderDetails?${urlParams}`, {
+    const getShoppingCart = await this.fetch(`http://localhost:8080/api/orderDetails?${urlParams}`, {
         headers: { "Authorization": `Bearer ${token}` }
     });
     const shoppingCarts = await getShoppingCart.json();
@@ -179,7 +179,7 @@ async function createOrGetShoppingCart() {
         shoppingCart = shoppingCarts[0];
     } else {
         // Create new shopping cart for user
-        const url = `https://valenciashopping.store/api/orderDetails`
+        const url = `http://localhost:8080/api/orderDetails`
         const body = {
             orderStatus: "Shopping Cart",
             customer: { id: customer.id }
@@ -280,7 +280,7 @@ function createCartCard(cartCardList, item, shoppingCartId) {
         evt.preventDefault();
         //console.log(shoppingCartId, item.id);
         // Delete item
-        const deleteItem = await fetch(`https://valenciashopping.store/api/orderDetails/${shoppingCartId}/removeItem/${item.id}`, {
+        const deleteItem = await fetch(`http://localhost:8080/api/orderDetails/${shoppingCartId}/removeItem/${item.id}`, {
             method: "DELETE",
             headers: { "Authorization": `Bearer ${token}` }
         });

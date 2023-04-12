@@ -1,4 +1,4 @@
-fetch('https://valenciashopping.store/api/products').then((data) => {
+fetch('http://localhost:8080/api/products').then((data) => {
         return data.json();
     })
     .then((completedata) => {

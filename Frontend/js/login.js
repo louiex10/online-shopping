@@ -25,7 +25,7 @@ async function login(loginButton) {
         return;
     }
 
-    const response = await fetch('https://valenciashopping.store/api/token', {
+    const response = await fetch('http://localhost:8080/api/token', {
         method: 'POST',
         headers: new Headers({ 'content-type': 'application/json' }),
         body: JSON.stringify({ username, password })

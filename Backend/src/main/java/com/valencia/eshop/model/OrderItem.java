@@ -1,5 +1,6 @@
 package com.valencia.eshop.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import org.hibernate.annotations.OnDelete;
@@ -16,7 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class OrderItem {
+public class OrderItem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

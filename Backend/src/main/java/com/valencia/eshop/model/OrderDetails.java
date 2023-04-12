@@ -19,12 +19,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class OrderDetails {
+public class OrderDetails implements Serializable{
 
   private @Id @GeneratedValue Long id;
 

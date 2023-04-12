@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     const tbody = custTable.createTBody();
 
     // fetch customer data from api
-    const getCustomers = await this.fetch('https://valenciashopping.store/api/customers', {
+    const getCustomers = await this.fetch('http://localhost:8080/api/customers', {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     const customers = await getCustomers.json();
 
     // fetch customer data from api
-    const getOrders = await this.fetch('https://valenciashopping.store/api/orderDetails?orderStatus=Shipped', {
+    const getOrders = await this.fetch('http://localhost:8080/api/orderDetails?orderStatus=Shipped', {
         headers: {
             Authorization: `Bearer ${token}`
         }

@@ -3,10 +3,11 @@ package com.valencia.eshop.controller;
 import com.valencia.eshop.model.Customer;
 import com.valencia.eshop.model.LoginRequest;
 import com.valencia.eshop.model.RegisterRequest;
-import com.valencia.eshop.repository.CustomerRepository;
+import com.valencia.eshop.service.CustomerService;
 import com.valencia.eshop.service.TokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,21 +25,18 @@ public class AuthController {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthController.class);
 
-    private final TokenService tokenService;
-    private final AuthenticationManager authenticationManager;
-    private final CustomerRepository customerRepository;
-    private final PasswordEncoder encoder;
+    @Autowired
+    private TokenService tokenService;
     
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-    public AuthController(TokenService tokenService, 
-                          AuthenticationManager authenticationManager, 
-                          CustomerRepository customerRepository,
-                          PasswordEncoder encoder) {
-        this.tokenService = tokenService;
-        this.authenticationManager = authenticationManager;
-        this.customerRepository = customerRepository;
-        this.encoder = encoder;
-    }
+    @Autowired
+    private PasswordEncoder encoder;
+
+    @Autowired
+    private CustomerService customerService;
+    
 
     @PostMapping("/token")
     public String token(@RequestBody LoginRequest userLogin) {
@@ -51,7 +49,7 @@ public class AuthController {
 
     @PostMapping("/register")   
     public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
-        Customer oldCustomer = customerRepository.findByUsername(registerRequest.email()).orElse(null);
+        Customer oldCustomer = customerService.findbyUsername(registerRequest.email());
         
         if (oldCustomer != null) {
             return new ResponseEntity<String>("User already exists", HttpStatus.BAD_REQUEST);
@@ -64,7 +62,7 @@ public class AuthController {
                 "ROLE_USER"
         );
 
-        customerRepository.save(newCustomer);
+        customerService.saveCustomer(newCustomer);
 
         return new ResponseEntity<String>("User registered!", HttpStatus.OK);
     }

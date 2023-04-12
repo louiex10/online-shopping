@@ -33,7 +33,7 @@ async function register(registerButton) {
         return;
     }
 
-    const response = await fetch('https://valenciashopping.store/api/register', {
+    const response = await fetch('http://localhost:8080/api/register', {
         method: 'POST',
         headers: new Headers({ 'content-type': 'application/json' }),
         body: JSON.stringify({ name, email, password })

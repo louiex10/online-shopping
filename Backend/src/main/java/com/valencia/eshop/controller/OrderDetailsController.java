@@ -2,6 +2,7 @@ package com.valencia.eshop.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,20 +27,17 @@ import com.valencia.eshop.repository.ProductRepository;
 @RestController
 class OrderDetailsController {
 
-  private final OrderDetailsRepository orepository;
-  private final ProductRepository prepository;
-  private final OrderItemsRepository oirepository;
-  private final CustomerRepository crepository;
+  @Autowired
+  private OrderDetailsRepository orepository;
 
-  OrderDetailsController(OrderDetailsRepository orepository, 
-                         ProductRepository prepository, 
-                         OrderItemsRepository oirepository,
-                         CustomerRepository crepository) {
-    this.orepository = orepository;
-    this.prepository = prepository;
-    this.oirepository = oirepository;
-    this.crepository = crepository;
-  }
+  @Autowired
+  private ProductRepository prepository;
+
+  @Autowired
+  private OrderItemsRepository oirepository;
+  
+  @Autowired
+  private CustomerRepository crepository;
 
   // Aggregate root
   // tag::get-aggregate-root[]
