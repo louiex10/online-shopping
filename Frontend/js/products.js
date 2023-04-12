@@ -190,14 +190,16 @@ function createCartCard(cartCardList, item, shoppingCartId) {
     total = currencyFormatter.format(total);
     cartCardContainer.innerHTML = `
     <div class="col-2 position-relative">
-        <picture class="d-block ">
-            <img class="img-fluid" src="${item.product.image_url}">
-        </picture>
+        <a href="product.html?id=${item.product.id}">
+            <picture class="d-block ">
+                <img class="img-fluid" src="${item.product.image_url}">
+            </picture>
+        </a>
     </div>
     <div class="col-9 offset-1">
         <div>
             <h6 class="justify-content-between d-flex align-items-start mb-2">
-                ${item.product.name}
+                <a href="product.html?id=${item.product.id}">${item.product.name}</a>
             </h6>
             <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: ${item.product.size} / Qty: ${item.quantity}</span>
         </div>
@@ -269,11 +271,12 @@ function createProductCard(productsList, product) {
     const cartButton = document.createElement("button");
     cartButton.classList.add(...cartButtonClasses);
     cartButtonDiv.appendChild(cartButton);
-    cartButton.innerHTML = '<i class="ri-add-line me-2 outline-focus"></i> Add to Cart';
+    cartButton.innerHTML = '<i class="ri-add-line me-2"></i> Add to Cart';
     cartButton.id = `productList-${product.id}`
 
     cartButton.addEventListener('click', async(evt) => {
         evt.preventDefault();
+        // set button to focus
         console.log("add product to cart");
         console.log(product.id);
         const shoppingCart = await createOrGetShoppingCart();
@@ -285,11 +288,17 @@ function createProductCard(productsList, product) {
         const resp = await addProduct.json();
         console.log(resp);
         await populateShoppingCart();
+
+        // turn off button focus
+        cartButton.blur();
     });
 
     const productCardBody = document.createElement("div");
     productCardBody.classList.add(...productCardBodyClasses);
-    productCardBody.innerHTML = `<p class="text-decoration-none">${product.name}</p>
+    productCardBody.innerHTML = `
+    <a href="product.html?id=${product.id}">
+        <p class="text-decoration-none">${product.name}</p>
+    </a>
     <small class="text-muted d-block">${product.category}, Size ${product.size}</small>
     <p class="mt-2 mb-0 small">${currencyFormatter.format(product.price)}</p>`
     productCard.appendChild(productCardBody);

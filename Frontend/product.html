@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Head -->
+
+<head>
+    <!-- Auth JS -->
+    <script defer src="./js/auth.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <!-- Page Meta Tags-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Luis Alarcon">
+
+    <!-- Custom Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@300;400;700&display=auto" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/category.css" />
+
+    <!-- Page Title -->
+    <title>Valencia Online Shopping - Product</title>
+
+</head>
+<!-- /Head -->
+
+<body class="">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white flex-column border-0  sticky-top">
+        <div class="container-fluid">
+            <div class="w-100">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <!-- Logo-->
+                    <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0 order-0" href="./index.html">
+                        <div class="d-flex align-items-center">
+                            <img style="width:50px" src="img/favicon.ico" /> &nbsp;
+                            <h4>Valencia Shopping</h4>
+                        </div>
+                    </a>
+                    <!-- / Logo-->
+
+                    <!-- Main Navigation-->
+                    <div class="flex-shrink-0 justify-content-end collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1 order-2 order-lg-1" id="navbarNavDropdown">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <!-- About us-->
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="./login.html" role="button">
+                                    About us
+                                </a>
+                            </li> -->
+                            <!-- /About us-->
+                            <!-- History -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="./order_history.html" role="button">
+                                    Order History
+                                </a>
+                            </li>
+                            <!-- /History-->
+                            <!-- Admin-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="./admin.html" role="button">
+                                    Admin
+                                </a>
+                            </li>
+                            <!-- Navbar Login-->
+                            <li class="nav-item">
+                                <a class="nav-link" role="button" id="logout-btn">
+                                    Logout
+                                </a>
+                            </li>
+                            <!-- /Navbar Login-->
+                            <!-- /Admin-->
+                        </ul>
+                    </div>
+
+                    <!-- Navbar Icons-->
+                    <ul class="list-unstyled mb-0 d-flex align-items-center order-1 order-lg-2 nav-sidelinks">
+
+                        <!-- Mobile Nav Toggler-->
+                        <li class="d-lg-none">
+                            <span class="nav-link text-body d-flex align-items-center cursor-pointer" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><i class="ri-menu-line ri-lg me-1"></i> Menu</span>
+                        </li>
+                        <!-- /Mobile Nav Toggler-->
+
+
+
+                        <!-- Navbar Cart Icon-->
+                        <li class="ms-1 d-inline-block position-relative dropdown-cart">
+                            <button class="nav-link me-0 disable-child-pointer border-0 p-0 bg-transparent text-body" id="cart-amount-btn" type="button">
+                                Shopping Cart (0)
+                            </button>
+                            <div class="cart-dropdown dropdown-menu">
+
+                                <!-- Cart Header-->
+                                <div class="d-flex justify-content-between align-items-center border-bottom pt-3 pb-4">
+                                    <h6 class="fw-bolder m-0" id="cart-summary-h6">Cart Summary (0 items)</h6>
+                                    <i class="ri-close-circle-line text-muted ri-lg cursor-pointer btn-close-cart"></i>
+                                </div>
+                                <!-- / Cart Header-->
+
+                                <!-- Cart Items-->
+                                <!-- uses /api/orderDetails to get shopping cart items-->
+                                <div class="cart-items" id="cart-items">
+                                </div>
+                                <!-- /Cart Items-->
+
+                                <!-- Cart Summary-->
+                                <div>
+                                    <div class="pt-3">
+                                        <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-start mb-4 mb-md-2">
+                                            <div>
+                                                <p class="m-0 fw-bold fs-5">Grand Total</p>
+                                                <!-- <span class="text-muted small">Inc $45.89 sales tax</span> -->
+                                            </div>
+                                            <p class="m-0 fs-5 fw-bold" id="cart-total">$0.00</p>
+                                        </div>
+                                    </div>
+                                    <a href="./cart.html" class="btn btn-outline-dark w-100 text-center mt-4" role="button">View Cart & Checkout</a>
+                                </div>
+                                <!-- / Cart Summary-->
+                            </div>
+
+
+                        </li>
+                        <!-- /Navbar Cart Icon-->
+
+                    </ul>
+                    <!-- Navbar Icons-->
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- / Navbar-->
+
+    <!-- Main Section-->
+    <section class="mt-0">
+        <!-- Page Content Goes Here -->
+
+        <div class="container-fluid mt-5">
+
+            <!-- Product Top Section-->
+            <div class="row g-9" data-sticky-container>
+
+                <!-- Product Images-->
+                <div class="col-12 col-md-6 col-xl-7 text-center">
+                    <div class="row g-3" data-aos="fade-in">
+                        <div class="col-12 text-center align-items-center">
+                            <picture>
+                                <img class="img-fluid" id="product-img" data-zoomable src="">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product Images-->
+
+                <!-- Product Information-->
+                <div class="col-12 col-md-6 col-lg-5" data-aos="fade-in">
+                    <div class="top-5">
+                        <h1 class="mb-1 fs-2 fw-bold" id="product-name">Product Name</h1>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="fs-4 m-0" id="product-price">$0.00</p>
+                        </div>
+                        <div class="border-top mt-4 mb-3 product-option">
+                            <small class="text-uppercase pt-4 d-block fw-bolder">
+                                    <span class="text-muted" id="product-category">Available Sizes ()</span> : <span class="selected-option fw-bold"
+                                        data-pixr-product-option="size" id="product-size1"></span>
+                                </small>
+                            <div class="mt-4 d-flex justify-content-start flex-wrap align-items-start">
+                                <div class="form-check-option form-check-rounded" id="product-size-div">
+                                    <input type="radio" name="product-option-sizes" checked value="" id="product-size-radio">
+                                    <label for="option-sizes-0">
+                                        <small id="product-size2">M</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark w-100 mt-4 mb-0 hover-lift-sm hover-boxshadow" id="add-product-btn">Add To Shopping Bag</button>
+
+                        <!-- Product Highlights-->
+                        <div class="my-5">
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="text-center px-2">
+                                        <i class="ri-24-hours-line ri-2x"></i>
+                                        <small class="d-block mt-1">Next-day Delivery</small>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="text-center px-2">
+                                        <i class="ri-secure-payment-line ri-2x"></i>
+                                        <small class="d-block mt-1">Secure Checkout</small>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="text-center px-2">
+                                        <i class="ri-service-line ri-2x"></i>
+                                        <small class="d-block mt-1">No Returns</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / Product Highlights-->
+
+                        <!-- Product Accordion -->
+                        <div class="accordion" id="accordionProduct">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Product Details
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionProduct">
+                                    <div class="accordion-body">
+                                        <p class="m-0" id="product-description">Made from 100% organic cotton</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Details & Care
+                                      </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionProduct">
+                                    <div class="accordion-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex border-0 row g-0 px-0">
+                                                <span class="col-4 fw-bolder">Composition</span>
+                                                <span class="col-7 offset-1">98% Cotton, 2% elastane</span>
+                                            </li>
+                                            <li class="list-group-item d-flex border-0 row g-0 px-0">
+                                                <span class="col-4 fw-bolder">Care</span>
+                                                <span class="col-7 offset-1">Professional dry clean only. Do not bleach. Do not iron.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                      Delivery & Returns
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionProduct">
+                                    <div class="accordion-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex border-0 row g-0 px-0">
+                                                <span class="col-4 fw-bolder">Delivery</span>
+                                                <span class="col-7 offset-1">Delivered directly to your computer.</span>
+                                            </li>
+                                            <li class="list-group-item d-flex border-0 row g-0 px-0">
+                                                <span class="col-4 fw-bolder">Returns</span>
+                                                <span class="col-7 offset-1">No returns as this is a sample app.</a></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / Product Accordion-->
+                    </div>
+                </div>
+            </div>
+            <!-- / Product Information-->
+        </div>
+        <!-- / Product Top Section-->
+
+        <!-- Related Products -->
+        <div class="container-fluid mx-1">
+            <div class="row g-0">
+                <!-- Swiper -->
+                <div class="col-12" data-aos="fade-up">
+                    <h3 class="fs-4 fw-bolder mt-7 mb-4">You May Also Like</h3>
+                    <!-- Swiper Latest -->
+                    <div class="swiper-container" id='swiper-options'>
+                        <div class="swiper-wrapper" id="suggested-products">
+                        </div>
+
+                        <!-- Add Arrows -->
+                        <div class="swiper-prev top-50  start-0 z-index-30 cursor-pointer transition-all bg-white px-3 py-4 position-absolute z-index-30 top-50 start-0 mt-n8 d-flex justify-content-center align-items-center opacity-50-hover">
+                            <i class="ri-arrow-left-s-line ri-lg"></i></div>
+                        <div class="swiper-next top-50 end-0 z-index-30 cursor-pointer transition-all bg-white px-3 py-4 position-absolute z-index-30 top-50 end-0 mt-n8 d-flex justify-content-center align-items-center opacity-50-hover">
+                            <i class="ri-arrow-right-s-line ri-lg"></i></div>
+                    </div>
+                    <!-- / Swiper Latest-->
+                </div>
+                <!-- / Swiper -->
+            </div>
+        </div>
+        <!-- / Related Products -->
+    </section>
+    <!-- / Main Section-->
+
+    <!-- Footer -->
+    <footer class="border-top py-5 mt-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-center align-items-center flex-column flex-lg-row">
+                <!-- <div>
+                    <ul class="list-unstyled">
+                        <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all" href="#"><i class="ri-instagram-fill"></i></a></li>
+                        <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all" href="#"><i class="ri-facebook-fill"></i></a></li>
+                        <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all" href="#"><i class="ri-twitter-fill"></i></a></li>
+                        <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all" href="#"><i class="ri-snapchat-fill"></i></a></li>
+                    </ul>
+                </div> -->
+                <div class="d-flex align-items-center justify-content-end flex-column flex-lg-row">
+                    <p class="small m-0 text-center text-lg-start">&copy; 2023 Valencia College Students</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- / Footer-->
+
+    <!-- Theme JS -->
+    <!-- Vendor JS -->
+    <script src="./assets/js/vendor.bundle.js"></script>
+
+    <!-- Theme JS -->
+    <script src="./assets/js/theme.bundle.js"></script>
+
+    <!-- Product JS -->
+    <script src="./js/product.js"></script>
+</body>
+
+</html>

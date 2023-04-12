@@ -209,14 +209,16 @@ async function createCartCard(cartList, item) {
 
     cartCardBody.innerHTML = `
     <div class="col-2 position-relative">
-        <picture class="justify-content-center align-items-center">
-            <img class="img-fluid border" src="${item.product.image_url}">
-        </picture>
+        <a href="product.html?id=${item.product.id}">
+            <picture class="justify-content-center align-items-center">
+                <img class="img-fluid border" src="${item.product.image_url}">
+            </picture>
+        </a>
     </div>
     <div class="col-9 offset-1">
         <div>
             <h6 class="justify-content-between d-flex align-items-start mb-2">
-                ${item.product.name}
+                <a href="product.html?id=${item.product.id}">${item.product.name}</a>
             </h6>
             <span class="d-block text-muted fw-bolder text-uppercase fs-9">Size: ${item.product.size} / Qty: ${item.quantity}</span>
         </div>
