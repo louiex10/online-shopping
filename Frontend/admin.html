@@ -107,88 +107,108 @@
 
     <!-- Admin Title -->
     <div class="container-fluid" data-aos="fade-in">
-        <h1 class="fw-bold fs-3 mb-2">Dashboard</h1>
+        <h1 class="fw-bold fs-3 mb-4">Dashboard</h1>
     </div>
     <!-- /Admin Title -->
+
+    <!-- KPIs -->
+    <div class="container-fluid" data-aos="fade-in">
+        <!--KPIs-->
+        <h5 class="mb-3 mt-3">KPIs</h5>
+        <!-- KPIs -->
+        <div class="row">
+
+            <!-- Total Revenue -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                    <div class="card-body text-start p-3 w-100">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="w-100">
+                                    <p class="text-sm text-secondary mb-1">Total Revenue</p>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-revenue"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Total Revenue -->
+
+            <!-- Total orders -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                    <div class="card-body text-start p-3 w-100">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="w-100">
+                                    <p class="text-sm text-secondary mb-1">Total Orders</p>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-orders"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Total orders -->
+            <!-- Total Items Sold -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                    <div class="card-body text-start p-3 w-100">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="w-100">
+                                    <p class="text-sm text-secondary mb-1">Total Items Sold</p>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-items-sold"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Total Items Sold -->
+            <!-- Total Customers -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                    <div class="card-body text-start p-3 w-100">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="w-100">
+                                    <p class="text-sm text-secondary mb-1">Total Customers</p>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-customers"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Total Customers -->
+        </div>
+        <!-- /KPIs-->
+    </div>
+    <!-- KPIs -->
+
+    <!-- Sales Over Time Title -->
+    <div class="container-fluid" data-aos="fade-in">
+        <h5 class="mb-4">Total Revenue Last 7 Days</h5>
+    </div>
+    <!-- /Sales Over Time Title -->
+
+    <div class="container mt-3" data-aos="fade-in">
+        <!-- Graph -->
+        <div class="row justify-content-center mt-5">
+            <div class="justify-content-center" id="tester"></div>
+        </div>
+        <!-- /Graph-->
+    </div>
 
     <!-- Main Section-->
     <section class="mt-0">
         <!-- Customer Table -->
         <div class="container-fluid" data-aos="fade-in">
-
-            <h5 class="mb-3 mt-3">KPIs</h5>
-            <!-- KPIs -->
-            <div class="row">
-
-                <!-- Total Revenue -->
-                <div class="col-xl-3 col-sm-6 mb-xl-0">
-                    <div class="card border shadow-xs mb-4">
-                        <div class="card-body text-start p-3 w-100">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="w-100">
-                                        <p class="text-sm text-secondary mb-1">Total Revenue</p>
-                                        <h4 class="mb-2 font-weight-bold" style="color:green" id="total-revenue"></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Total Revenue -->
-
-                <!-- Total orders -->
-                <div class="col-xl-3 col-sm-6 mb-xl-0">
-                    <div class="card border shadow-xs mb-4">
-                        <div class="card-body text-start p-3 w-100">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="w-100">
-                                        <p class="text-sm text-secondary mb-1">Total Orders</p>
-                                        <h4 class="mb-2 font-weight-bold" style="color:green" id="total-orders"></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Total orders -->
-                <!-- Total Items Sold -->
-                <div class="col-xl-3 col-sm-6 mb-xl-0">
-                    <div class="card border shadow-xs mb-4">
-                        <div class="card-body text-start p-3 w-100">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="w-100">
-                                        <p class="text-sm text-secondary mb-1">Total Items Sold</p>
-                                        <h4 class="mb-2 font-weight-bold" style="color:green" id="total-items-sold"></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Total Items Sold -->
-                <!-- Total Customers -->
-                <div class="col-xl-3 col-sm-6 mb-xl-0">
-                    <div class="card border shadow-xs mb-4">
-                        <div class="card-body text-start p-3 w-100">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="w-100">
-                                        <p class="text-sm text-secondary mb-1">Total Customers</p>
-                                        <h4 class="mb-2 font-weight-bold" style="color:green" id="total-customers"></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Total Customers -->
-            </div>
-
-
-            <h5 class="mb-3 mt-3">Customer List</h5>
+            <a style="text-decoration: none;" href="#customerHeader">
+                <h5 class="mb-3 mt-3">Customer List</h5>
+            </a>
             <!-- Customer Table -->
             <div class="table-responsive">
                 <table class="table table-hover table-striped" id="custTable">
@@ -205,6 +225,10 @@
                 </table>
             </div>
             <!-- /Customer Table -->
+            <!-- Pagination-->
+            <ul class="pagination justify-content-center mt-1" id="productPaginator">
+            </ul>
+            <!-- /Pagination -->
         </div>
         <!-- Customer Table -->
     </section>
@@ -228,6 +252,9 @@
 
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
+
+    <!-- Plotly JS -->
+    <script src="./js/plotly-2.20.0.min.js"></script>
 
     <!-- Custom JS-->
     <script src="./js/admin.js"></script>
