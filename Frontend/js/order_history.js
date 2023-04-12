@@ -72,6 +72,10 @@ async function populateOrders(customerId) {
         console.log(`no orders for user ${customerId}`);
         return
     }
+    // sort orders by date descending
+    orders.sort((a, b) => {
+        return new Date(a.orderDate) - new Date(b.orderDate);
+    });
     console.log(orders);
     const ordersList = document.querySelector("#ordersList");
     clearInnerHTML(ordersList);

@@ -11,6 +11,10 @@ const numberFormatter = new Intl.NumberFormat('en-US', {
     style: 'decimal',
 });
 
+// Current Page
+let currPage = 1;
+const pageSize = 10;
+
 // -- On Startup --
 window.addEventListener('DOMContentLoaded', async function() {
     console.log('Admin Panel');
@@ -36,6 +40,9 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
     const orders = await getOrders.json();
 
+    // Create sales plot
+    createSalesPlot(orders);
+
     // Get KPIs
     const totalOrdersDiv = document.querySelector('#total-orders');
     const totalCustomersDiv = document.querySelector('#total-customers');
@@ -47,8 +54,8 @@ window.addEventListener('DOMContentLoaded', async function() {
     const totalCustomers = customers.length;
     let totalRevenue = 0;
     let itemsSold = 0;
-    orders.forEach((o) => {
 
+    orders.forEach((o) => {
         o.orderItems.forEach((oi) => {
             totalRevenue += oi.product.price * oi.quantity;
             itemsSold += oi.quantity;
@@ -56,7 +63,6 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
 
     totalRevenue = currencyFormatter.format(totalRevenue);
-
 
     // Set KPIs
     totalOrdersDiv.textContent = numberFormatter.format(totalOrders);
@@ -83,6 +89,9 @@ window.addEventListener('DOMContentLoaded', async function() {
         const orders = ordersByCustomer[c.id] ? ordersByCustomer[c.id].orders : 0;
         createRow(tbody, [c.id, c.name, c.email, orders, c.roles]);
     })
+
+    // add pagination
+    createPagination(tbody);
 });
 
 /**
@@ -107,4 +116,189 @@ function createRow(tbody, data = ['1', '2', '3', '4']) {
         window.location.href = `order_history.html?customerId=${data[0]}`;
     })
     buttonCell.appendChild(ordersButton);
+}
+
+function clearInnerHTML(e1) {
+    while (e1.firstChild) e1.removeChild(e1.firstChild);
+}
+
+function createPagination(itemList) {
+    currPage = 1;
+
+    // Add Pagination
+    const productPaginator = document.querySelector('#productPaginator');
+    clearInnerHTML(productPaginator);
+
+    // Previous Button
+    const prevButton = document.createElement('li');
+    prevButton.classList.add('page-item');
+    const prevButtonLink = document.createElement('a');
+    prevButtonLink.classList.add('page-link');
+    prevButtonLink.setAttribute('href', '#customerHeader');
+    prevButtonLink.innerText = 'Previous';
+    prevButton.appendChild(prevButtonLink);
+    productPaginator.appendChild(prevButton);
+
+    prevButton.addEventListener('click', () => {
+        if (currPage > 1) {
+            const pageButtonOld = document.querySelector(`#page-${currPage}`);
+            pageButtonOld.classList.remove('active');
+            currPage--;
+            const pageButtonNew = document.querySelector(`#page-${currPage}`);
+            pageButtonNew.classList.add('active');
+            turnPage(itemList);
+        }
+    });
+
+    console.log(Math.ceil(itemList.children.length / pageSize));
+
+    for (let i = 0; i < Math.ceil(itemList.children.length / pageSize); i++) {
+        const pageButton = document.createElement('li');
+        pageButton.id = "page-" + (i + 1);
+        pageButton.classList.add('page-item');
+        const pageButtonLink = document.createElement('a');
+        pageButtonLink.classList.add('page-link');
+        pageButtonLink.setAttribute('href', '#customerHeader');
+        pageButtonLink.innerText = i + 1;
+        pageButton.appendChild(pageButtonLink);
+        productPaginator.appendChild(pageButton);
+        if (i === 0) pageButton.classList.add('active');
+        pageButton.addEventListener('click', (evt) => {
+            const pageButtonOld = document.querySelector(`#page-${currPage}`);
+            pageButtonOld.classList.remove('active');
+            currPage = i + 1;
+            const pageButtonNew = document.querySelector(`#page-${currPage}`);
+            pageButtonNew.classList.add('active');
+            turnPage(itemList);
+        });
+    }
+
+    // Next Button
+    const nextButton = document.createElement('li');
+    nextButton.classList.add('page-item');
+    const nextButtonLink = document.createElement('a');
+    nextButtonLink.classList.add('page-link');
+    nextButtonLink.setAttribute('href', '#customerHeader');
+    nextButtonLink.innerText = 'Next';
+    nextButton.appendChild(nextButtonLink);
+    productPaginator.appendChild(nextButton);
+
+    nextButton.addEventListener('click', () => {
+        if (currPage < Math.ceil(itemList.children.length / pageSize)) {
+            const pageButtonOld = document.querySelector(`#page-${currPage}`);
+            pageButtonOld.classList.remove('active');
+            currPage++;
+            const pageButtonNew = document.querySelector(`#page-${currPage}`);
+            pageButtonNew.classList.add('active');
+            turnPage(itemList);
+        }
+    });
+
+    // Hide products that are not on current page
+    turnPage(itemList);
+}
+
+function turnPage(itemList) {
+    let start = (currPage - 1) * pageSize;
+    let end = (currPage - 1) * pageSize + pageSize - 1;
+    end = end > itemList.children.length - 1 ? itemList.children.length - 1 : end;
+    console.log("start:", start);
+    console.log(end);
+    itemList.children.forEach((product, index) => {
+        if (index >= start && index <= end) {
+            product.classList.remove('d-none');
+        } else {
+            product.classList.add('d-none');
+        }
+    });
+}
+
+function createSalesPlot(orders) {
+    // 7 days ago
+    let sevenDaysAgo = new Date();
+    sevenDaysAgo = new Date(sevenDaysAgo.getTime() - 6 * 24 * 60 * 60 * 1000);
+    sevenDaysAgo = new Date(sevenDaysAgo.toLocaleDateString());
+
+    // Today
+    let today = new Date();
+    //console.log(sevenDaysAgo.toLocaleDateString());
+    //console.log(today.toLocaleDateString());
+
+    // Filter orders for last 7 days
+    const last7Days = orders.filter((o) => {
+        const orderDate = new Date(o.orderDate);
+        return orderDate > sevenDaysAgo && orderDate <= today;
+    });
+    //console.log(last7Days);
+
+    // Group orders by date
+    const ordersByDate = last7Days.reduce((acc, o) => {
+        const date = new Date(o.orderDate).toLocaleDateString();
+        const orderSales = o.orderItems.reduce((acc, oi) => {
+            return acc + oi.product.price * oi.quantity;
+        }, 0);
+        if (!acc[date]) {
+            acc[date] = orderSales;
+        } else {
+            acc[date] += orderSales;
+        }
+        return acc;
+    }, {});
+    //console.log(ordersByDate);
+    // Create array of dates and sales
+    let dates = Object.keys(ordersByDate);
+    let sales = Object.values(ordersByDate);
+
+    // Sort dates and sales by dates
+    let sorted = dates.map((d, i) => {
+        return {
+            date: d,
+            sales: sales[i]
+        }
+    }).sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+    });
+    // Reassign dates and sales
+    dates = sorted.map((d) => d.date);
+    sales = sorted.map((d) => d.sales);
+
+    // Add missing dates
+    const firstDate = sevenDaysAgo;
+    const lastDate = today;
+    //console.log(lastDate);
+    for (let d = firstDate; d <= lastDate; d.setTime(d.getTime() + 24 * 60 * 60 * 1000)) {
+        const date = new Date(d).toLocaleDateString();
+        //console.log(date);
+        if (!dates.includes(date)) {
+            dates.push(date);
+            sales.push(0);
+        }
+    }
+    // Sort dates and sales by dates
+    sorted = dates.map((d, i) => {
+        return {
+            date: d,
+            sales: sales[i]
+        }
+    }).sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+    });
+    // Reassign dates and sales
+    dates = sorted.map((d) => d.date);
+    sales = sorted.map((d) => d.sales);
+    //console.log(sorted);
+
+    // Plot sales data
+    const salesPlot = document.getElementById('tester');
+    Plotly.newPlot(salesPlot, [{
+        x: dates,
+        y: sales,
+        type: 'bar',
+    }], {
+        yaxis: {
+            tickprefix: '$',
+            tickformat: ',.0f'
+        },
+        margin: { t: 0 }
+    }, { responsive: true });
 }
