@@ -7,9 +7,6 @@
     <!-- Auth JS -->
     <script defer src="./js/auth.js"></script>
 
-    <!-- Plotly -->
-    <script defer src="./js/plotly-2.20.0.min.js"></script>
-
     <!-- Page Meta Tags-->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -129,7 +126,10 @@
                             <div class="col-12">
                                 <div class="w-100">
                                     <p class="text-sm text-secondary mb-1">Total Revenue</p>
-                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-revenue"></h4>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-revenue">
+                                        <div class="spinner-border mt-1" role="status">
+                                        </div>
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +146,10 @@
                             <div class="col-12">
                                 <div class="w-100">
                                     <p class="text-sm text-secondary mb-1">Total Orders</p>
-                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-orders"></h4>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-orders">
+                                        <div class="spinner-border mt-1" role="status">
+                                        </div>
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +165,10 @@
                             <div class="col-12">
                                 <div class="w-100">
                                     <p class="text-sm text-secondary mb-1">Total Items Sold</p>
-                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-items-sold"></h4>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-items-sold">
+                                        <div class="spinner-border mt-1" role="status">
+                                        </div>
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +184,10 @@
                             <div class="col-12">
                                 <div class="w-100">
                                     <p class="text-sm text-secondary mb-1">Total Customers</p>
-                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-customers"></h4>
+                                    <h4 class="mb-2 font-weight-bold" style="color:green" id="total-customers">
+                                        <div class="spinner-border mt-1" role="status">
+                                        </div>
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -198,6 +207,11 @@
     <!-- /Sales Over Time Title -->
 
     <div class="container mt-3" data-aos="fade-in">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status" id="salesSpinner" style="width: 3rem; height: 3rem;">
+            </div>
+        </div>
+
         <!-- Graph -->
         <div class="row justify-content-center mt-5">
             <div class="justify-content-center" id="tester"></div>
@@ -255,6 +269,9 @@
 
     <!-- Theme JS -->
     <script src="./assets/js/theme.bundle.js"></script>
+
+    <!-- Plotly -->
+    <script defer src="./js/plotly-2.20.0.min.js"></script>
 
     <!-- Custom JS-->
     <script src="./js/admin.js"></script>

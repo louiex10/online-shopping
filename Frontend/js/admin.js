@@ -301,4 +301,6 @@ function createSalesPlot(orders) {
         },
         margin: { t: 0 }
     }, { responsive: true });
+    const salesSpinner = document.getElementById('salesSpinner');
+    salesSpinner.classList.add('d-none');
 }
