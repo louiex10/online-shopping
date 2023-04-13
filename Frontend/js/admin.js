@@ -40,9 +40,6 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
     const orders = await getOrders.json();
 
-    // Create sales plot
-    createSalesPlot(orders);
-
     // Get KPIs
     const totalOrdersDiv = document.querySelector('#total-orders');
     const totalCustomersDiv = document.querySelector('#total-customers');
@@ -92,6 +89,9 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     // add pagination
     createPagination(tbody);
+
+    // Create sales plot
+    createSalesPlot(orders);
 });
 
 /**
