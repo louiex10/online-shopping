@@ -3,6 +3,8 @@ window.addEventListener('DOMContentLoaded', async function() {
     let urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('registered')) {
         createAlert('Your account was created successfully. Please log in.', 'success');
+    } else if (urlParams.has('expired')) {
+        createAlert('Your current session has expired. Please login.', 'warning');
     }
     // login Button
     const loginButton = document.querySelector("#login-btn");
