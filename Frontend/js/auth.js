@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         // Logout Button
     const logoutButton = document.querySelector("#logout-btn");
     if (logoutButton) {
-        logoutButton.addEventListener('click', logout);
+        logoutButton.addEventListener('click', () => { logout(false) });
     }
 });
 
